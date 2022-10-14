@@ -1,0 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  /* 16px*0.625 = 10px */
+  /* we do this to respect browser's font size-setting that user choise for themselves, 1rem will be equal to 10px */
+  font-size: 62.5%;
+}
+
+body {
+  /* Alternative font-family */
+  /* font-family: "Lucida Grande", Tahoma, Verdana, sans-serif; */
+
+  /* font-family: 'Inter', sans-serif; */
+  font-family: 'Varela Round', sans-serif;
+  font-weight: 400;
+  color: #000;
+
+  background: rgb(212, 224, 251);
+  background: linear-gradient(to right, rgba(212, 224, 251, 1) 0%, rgba(245, 247, 252, 1) 100%);
+
+  /* background-image: radial-gradient(circle 993px at 0.5% 50.5%, rgba(137, 171, 245, 0.37) 0%, rgba(245, 247, 252, 1) 100.2%); */
+
+  /* radial-gradient(circle 993px at 0.5% 50.5%, rgba(137, 171, 245, 0.37) 0%, rgba(245, 247, 252, 1) 100.2%); */
+
+  /* background: linear-gradient(to bottom, rgba(15, 15, 15, 1) 0%, rgba(25, 25, 25, 1) 85%, rgb(30, 30, 30) 100%); */
+  /* background: linear-gradient(to bottom, rgba(15, 15, 15, 1) 0%, rgba(25, 25, 25, 1) 85%, rgb(30, 30, 30) 100%); */
+  /* background: linear-gradient(to bottom, rgba(15, 15, 15, 1) 0%, rgba(25, 25, 25, 1) 85%, rgb(30, 30, 30) 100%); */
+  /* background: -webkit-linear-gradient(to bottom, rgba(15, 15, 15, 1) 0%, rgba(25, 25, 25, 1) 85%, rgb(30, 30, 30) 100%);
+  background: -moz-linear-gradient(to bottom, rgba(15, 15, 15, 1) 0%, rgba(25, 25, 25, 1) 85%, rgb(30, 30, 30) 100%);
+  background: -o-linear-gradient(to bottom, rgba(15, 15, 15, 1) 0%, rgba(25, 25, 25, 1) 85%, rgb(30, 30, 30) 100%); */
+
+  /* background-color does not overwrite background selector */
+  /* background-color: rgba(15, 15, 15, 1); */
+
+  /* background-repeat: no-repeat; */
+  /* background-attachment: fixed; */
+}
+
+*:focus {
+  outline: none;
+  box-shadow: 0 0 0 8px rgb(102, 102, 102, 0.5);
+}

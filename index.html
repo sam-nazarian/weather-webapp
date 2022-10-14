@@ -3,9 +3,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet" />
+
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
-    <div class=""></div>
+    <input type="text" class="search" placeholder="Search a city..." />
+
+    <div class="container">
+      <div class="left-col">
+        <h1 class="city-name">City Name</h1>
+        <p class="weather-description">Clear sky</p>
+        <!-- <img src="src/img/icons/wind.png" alt="weather icon" class="icon" /> -->
+        <img src="src/img/icons/01d.svg" alt="weather icon" class="icon" />
+        <p class="temp">10°C</p>
+        <p class="feels-like">Feels like 10°C</p>
+      </div>
+
+      <div class="right-col">
+        <p class="date">Thursday, 23:31</p>
+      </div>
+    </div>
   </body>
 </html>
