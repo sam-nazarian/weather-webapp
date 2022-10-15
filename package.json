@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "babel-loader": "^8.2.5",
+    "country-code-emoji": "^2.3.0",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0"
   }
