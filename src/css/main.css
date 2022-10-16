@@ -1,13 +1,12 @@
 .input-container {
   width: 50%;
   margin: 0 auto;
-  margin-top: 6rem;
+  margin-top: 12rem;
   margin-bottom: 2.4rem;
 }
 
 .search {
   width: 100%;
-  margin-top: 6rem;
   padding: 1.0rem 3.6rem;
 
   font-size: 1.8rem;
@@ -33,7 +32,6 @@
 }
 
 .search-results-container {
-
   position: absolute;
   /* if not top, then it's div is going to be placed in current position */
 
@@ -52,7 +50,15 @@
 }
 
 .hide {
-  display: none;
+  /* 1) Hide it visually */
+  opacity: 0;
+  /* 2) make it unaccessible to mouse and keyboard */
+  pointer-events: none;
+  /* 3) Hide it from screen readers */
+  visibility: hidden;
+
+  /* position: absolute;
+  left: -10000px; */
 }
 
 .search-result-card {
