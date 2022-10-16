@@ -5,3 +5,12 @@ export async function fetchFiveDayForecast(lat, lon) {
   const data = await getWeatherData.json();
   return data;
 }
+
+// export async function fetchCities() {
+//   console.log(city);
+//   const res = await fetch('cities.json');
+//   cities = await res.json();
+
+//   console.log(cities);
+//   return cities;
+// }

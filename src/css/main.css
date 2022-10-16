@@ -1,52 +1,74 @@
-/* .bar {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin: 0rem 30rem;
-  align-items: center;
-
-  margin-top: 6rem;
-} */
-
-/* .search-form {
-  justify-self: right;
-  width: 100%;
-} */
-
-
 .input-container {
-  position: relative;
   width: 50%;
   margin: 0 auto;
   margin-top: 6rem;
-
   margin-bottom: 2.4rem;
 }
 
 .search {
   width: 100%;
-  padding: 1.0rem 4.9rem;
-  font-size: 2.0rem;
+  margin-top: 6rem;
+  padding: 1.0rem 3.6rem;
+
+  font-size: 1.8rem;
   font-family: inherit;
   color: #303030;
   border: none;
   background-color: #ffff;
+
   border-radius: 10px;
 
   background-image: url('src/img/icons/searchGoogle.svg');
   background-repeat: no-repeat;
   background-position: left center;
-  /* background-size: 40px; */
+  border: 1px solid rgba(72, 72, 74, .33);
+
+  background-size: 34px;
 
   box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
 }
 
-/* .search-icon {
+.search-results-location {
+  position: relative;
+}
+
+.search-results-container {
+
   position: absolute;
-  width: 40px;
-  top: 50%;
-  left: 0rem;
-  transform: translateY(-50%)
-} */
+  /* if not top, then it's div is going to be placed in current position */
+
+  top: -9px;
+  background-color: #fff;
+  list-style-type: none;
+  border: 1px solid rgba(72, 72, 74, .33);
+
+  width: 100%;
+  border-top: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-size: 1.5rem;
+
+  overflow: hidden;
+}
+
+.hide {
+  display: none;
+}
+
+.search-result-card {
+  padding: 1.2rem 1rem;
+
+  cursor: pointer;
+}
+
+.search-result-card:hover {
+  /* background-color: #eee; */
+  background-color: hsla(0, 0%, 94.9%, .5);
+}
+
+.search-result-geolocation {
+  font-size: 1rem;
+}
 
 .container {
   display: grid;

@@ -32,7 +32,7 @@ export async function render(fetchFiveDayForecast, lat, lng, metric) {
   const data = await fetchFiveDayForecast(lat, lng);
 
   //render data
-  cityNameDom.textContent = `${data.city.country} ${countryCodeEmoji(data.city.country)}`;
+  cityNameDom.textContent = `Winnipeg, ${data.city.country} ${countryCodeEmoji(data.city.country)}`;
   weatherDescriptionDom.textContent = data.list[0].weather[0].description;
   tempDom.textContent = `${Math.round(data.list[0].main.temp)}°C`;
   feelsLikeTempDom.textContent = `${Math.round(data.list[0].main.feels_like)}°C`;

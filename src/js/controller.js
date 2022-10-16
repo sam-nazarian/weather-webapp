@@ -1,7 +1,8 @@
 import generalStyle from '../css/general.css';
 import mainStyle from '../css/main.css';
-import { render } from './view.js';
-import { fetchFiveDayForecast } from './model.js';
+import { fetchFiveDayForecast, fetchCities } from './model.js';
+import { render } from './views/renderView.js';
+import searchView from './views/searchView.js';
 
 //imoprt all images from the chesspieces folder
 function importAll(r) {
