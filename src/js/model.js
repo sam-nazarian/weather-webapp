@@ -6,11 +6,9 @@ export async function fetchFiveDayForecast(lat, lon) {
   return data;
 }
 
-// export async function fetchCities() {
-//   console.log(city);
-//   const res = await fetch('cities.json');
-//   cities = await res.json();
+export async function fetchLocationBasedOnIP() {
+  const getLatLongData = await fetch(`https://geolocation-db.com/json/`);
+  const { latitude, longitude } = await getLatLongData.json();
 
-//   console.log(cities);
-//   return cities;
-// }
+  return { latitude, longitude };
+}

@@ -56,9 +56,6 @@
   pointer-events: none;
   /* 3) Hide it from screen readers */
   visibility: hidden;
-
-  /* position: absolute;
-  left: -10000px; */
 }
 
 .search-result-card {
@@ -79,7 +76,7 @@
 .container {
   display: grid;
   row-gap: 9.6rem;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1.5fr 3fr;
   margin: 0 30rem;
 
   margin-bottom: 4rem;
@@ -99,13 +96,18 @@
 }
 
 .city-name {
+  font-size: 3.0rem;
+  margin-bottom: 0.1rem;
+}
+
+.country-name {
   font-size: 3.6rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.4rem;
 }
 
 .weather-description {
   font-size: 2.4rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.2rem;
 }
 
 .icon {
@@ -168,7 +170,6 @@
 .unit {
   font-size: 1.6rem;
 }
-
 
 /* HOURLY CONTAINER */
 .hourly-container {

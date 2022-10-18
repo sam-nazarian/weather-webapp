@@ -26,8 +26,10 @@
     "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
+    "@mapbox/timespace": "^2.0.4",
     "babel-loader": "^8.2.5",
     "country-code-emoji": "^2.3.0",
+    "country-code-lookup": "^0.0.20",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0"
   }

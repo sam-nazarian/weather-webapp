@@ -1,10 +1,18 @@
-import cities from '../../data/cities.json';
+// import cities from '../../data/cities.json';
 import { countryCodeEmoji } from 'country-code-emoji';
 import { render } from './renderView.js';
+import { byIso } from 'country-code-lookup';
 
 const search = document.querySelector('.search');
 const matchList = document.querySelector('.search-results-container');
 const inputContainer = document.querySelector('.input-container');
+
+//cities will be set to cities.json as soon as it's fetch is complete
+//this way the browser's execution doesn't stop & wait to load cities.json
+let cities = undefined;
+(async function () {
+  cities = await import('../../data/cities.json');
+})();
 
 // Search cities.json & filter it
 const searchCities = async function (searchText) {
@@ -38,7 +46,7 @@ const outputHtml = function (matches) {
         (match) => `
         <li>
           <div class="search-result-card" data-lat="${match.lat}" data-lon="${match.lng}" data-city="${match.name}">
-            <h4>${match.name}, ${match.country} ${countryCodeEmoji(match.country)} </h4>
+            <h4>${match.name}, ${byIso(match.country).country} ${countryCodeEmoji(match.country)} </h4>
             <p class="search-result-geolocation">Lat: ${match.lat} Long: ${match.lng}</p>
           </div>
         </li>
@@ -51,7 +59,7 @@ const outputHtml = function (matches) {
   }
 };
 
-export async function searchCitiesHandler(fetchFiveDayForecast) {
+export function searchCitiesHandler(fetchFiveDayForecast) {
   // When a card is clicked render it
   matchList.addEventListener('click', function (e) {
     const selectedCard = e.target.closest('.search-result-card');
@@ -59,10 +67,11 @@ export async function searchCitiesHandler(fetchFiveDayForecast) {
 
     render(fetchFiveDayForecast, selectedCard.dataset.lat, selectedCard.dataset.lon, true);
 
+    search.value = '';
     matchList.classList.add('hide');
-    console.log(selectedCard.dataset.city);
-    console.log(selectedCard.dataset.lat);
-    console.log(selectedCard.dataset.lon);
+    // console.log(selectedCard.dataset.city);
+    // console.log(selectedCard.dataset.lat);
+    // console.log(selectedCard.dataset.lon);
   });
 
   // When an input is added search for cities
