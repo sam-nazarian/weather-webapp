@@ -38,15 +38,15 @@
         <img src="src/img/icons/01d.svg" alt="weather icon" class="icon" />
 
         <div class="temp-container">
-          <p class="temp">22°C</p>
+          <p class="temp"><span class="temp-text" data-temp="">22</span><span class="temp-unit">°C</span></p>
 
           <div class="high-low-container">
-            <p class="temp-high">↑<span class="temp-high-text">24</span>°C</p>
-            <p class="temp-low">↓<span class="temp-low-text">18</span>°C</p>
+            <p class="temp-high">↑<span class="temp-high-text" data-temp="">24</span><span class="temp-unit">°C</span></p>
+            <p class="temp-low">↓<span class="temp-low-text" data-temp="">18</span><span class="temp-unit">°C</span></p>
           </div>
         </div>
 
-        <p class="feels-like">Feels like <span class="feels-like-temp">20°C</span></p>
+        <p class="feels-like">Feels like <span class="feels-like-temp" data-temp="">20</span><span class="temp-unit">°C</span></p>
       </div>
 
       <div class="right-col">
@@ -79,8 +79,8 @@
 
             <div class="metric-data">
               <p class="card-title">Wind Speed</p>
-              <p class="metric-value wind-speed-value"></p>
-              <p class="unit">m/s</p>
+              <p class="metric-value wind-speed-value" data-speed=""></p>
+              <p class="unit wind-speed-unit">m/s</p>
             </div>
           </div>
 
@@ -111,43 +111,43 @@
           <div class="hourly-card">
             <p class="hourly-time">7:00 pm</p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp">9°C</p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
           </div>
 
           <div class="hourly-card">
             <p class="hourly-time">10:00 pm</p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp">9°C</p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
           </div>
 
           <div class="hourly-card">
             <p class="hourly-time">1:00 am</p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp">9°C</p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
           </div>
 
           <div class="hourly-card">
             <p class="hourly-time">4:00 am</p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp">9°C</p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
           </div>
 
           <div class="hourly-card">
             <p class="hourly-time">7:00 am</p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp">9°C</p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
           </div>
 
           <div class="hourly-card">
             <p class="hourly-time">10:00 am</p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp">9°C</p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
           </div>
 
           <div class="hourly-card">
             <p class="hourly-time">1:00 pm</p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp">9°C</p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
           </div>
         </div>
 
@@ -157,29 +157,29 @@
           <div class="hourly-card">
             <p class="five-day-forecast-day">Today</p>
             <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high">24</span>°C &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low">18</span>°C</p>
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp="">24</span><span class="temp-unit">°C</span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp="">18</span><span class="temp-unit">°C</span></p>
           </div>
 
           <div class="hourly-card">
             <p class="five-day-forecast-day">Today</p>
             <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high">24</span>°C &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low">18</span>°C</p>
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp="">24</span><span class="temp-unit">°C</span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp="">18</span><span class="temp-unit">°C</span></p>
           </div>
           <div class="hourly-card">
             <p class="five-day-forecast-day">Today</p>
             <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high">24</span>°C &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low">18</span>°C</p>
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp="">24</span><span class="temp-unit">°C</span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp="">18</span><span class="temp-unit">°C</span></p>
           </div>
           <div class="hourly-card">
             <p class="five-day-forecast-day">Today</p>
             <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high">24</span>°C &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low">18</span>°C</p>
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp="">24</span><span class="temp-unit">°C</span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp="">18</span><span class="temp-unit">°C</span></p>
           </div>
 
           <div class="hourly-card">
             <p class="five-day-forecast-day">Today</p>
             <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high">24</span>°C &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low">18</span>°C</p>
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp="">24</span><span class="temp-unit">°C</span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp="">18</span><span class="temp-unit">°C</span></p>
           </div>
         </div>
       </div>

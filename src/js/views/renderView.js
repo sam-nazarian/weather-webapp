@@ -8,13 +8,14 @@ const dateDom = document.querySelector('.date');
 
 const weatherDescriptionDom = document.querySelector('.weather-description');
 const iconDom = document.querySelector('.icon');
-const tempDom = document.querySelector('.temp');
+const tempDom = document.querySelector('.temp-text');
 const tempHighTextDom = document.querySelector('.temp-high-text');
 const tempLowTextDom = document.querySelector('.temp-low-text');
 
 const feelsLikeTempDom = document.querySelector('.feels-like-temp');
 const humidityValueDom = document.querySelector('.humidity-value');
 const windSpeedValueDom = document.querySelector('.wind-speed-value');
+const windSpeedUnitDom = document.querySelector('.wind-speed-unit');
 
 const sunriseValueDom = document.querySelector('.sunrise-value');
 const sunsetValueDom = document.querySelector('.sunset-value');
@@ -24,14 +25,20 @@ const sunsetUnitDom = document.querySelector('.sunset-unit');
 // const hourlyCard = document.querySelectorAll('.hourly-card');
 const hourlyTimeDom = Array.from(document.querySelectorAll('.hourly-time'));
 const hourlyImgDom = Array.from(document.querySelectorAll('.hourly-img'));
-const hourlyTempDom = Array.from(document.querySelectorAll('.hourly-temp'));
+const hourlyTempDom = Array.from(document.querySelectorAll('.hourly-temp-text'));
 
 //5-DAY-FORECAST
 const fiveDayForecastDayDom = document.querySelectorAll('.five-day-forecast-day');
 const fiveDayForecastImgDom = document.querySelectorAll('.five-day-forecast-img');
 
+const tempUnitDom = Array.from(document.querySelectorAll('.temp-unit'));
+
 const fiveDayForecastTempHigh = document.querySelectorAll('.five-day-forecast-temp-high');
 const fiveDayForecastTempLow = document.querySelectorAll('.five-day-forecast-temp-low');
+
+// Metrics
+const metricDom = document.getElementById('metric');
+const imperialDom = document.getElementById('imperial');
 
 //////////////////////////
 function getHours(internationalTime) {
@@ -78,17 +85,22 @@ export async function render(fetchFiveDayForecast, lat, lng, metric) {
   cityNameDom.textContent = `${data.city.name}`;
   countryNameDom.textContent = `${byIso(data.city.country).country} ${countryCodeEmoji(data.city.country)}`;
   weatherDescriptionDom.textContent = data.list[0].weather[0].description;
-  tempDom.textContent = `${Math.round(data.list[0].main.temp)}°C`;
+
+  // tempDom.textContent = `${Math.round(data.list[0].main.temp)}°C`;
+  tempDom.dataset.temp = Math.round(data.list[0].main.temp);
 
   const [maxTemp, minTemp] = findMinAndMaxTemp(0, data);
-  tempHighTextDom.textContent = maxTemp;
-  tempLowTextDom.textContent = minTemp;
+  // tempHighTextDom.textContent = maxTemp;
+  tempHighTextDom.dataset.temp = maxTemp;
+  // tempLowTextDom.textContent = minTemp;
+  tempLowTextDom.dataset.temp = minTemp;
+  // feelsLikeTempDom.textContent = `${Math.round(data.list[0].main.feels_like)}°C`;
+  feelsLikeTempDom.dataset.temp = Math.round(data.list[0].main.feels_like);
 
-  feelsLikeTempDom.textContent = `${Math.round(data.list[0].main.feels_like)}°C`;
   iconDom.src = `src/img/icons/${data.list[0].weather[0].icon}.svg`;
 
   humidityValueDom.textContent = data.list[0].main.humidity;
-  windSpeedValueDom.textContent = data.list[0].wind.speed;
+  windSpeedValueDom.dataset.speed = data.list[0].wind.speed;
 
   const [sunriseTime, sunriseUnit] = formatAMPM(new Date(data.city.sunrise * 1000), lat, lng).split(' ');
   const [sunsetTime, sunsetUnit] = formatAMPM(new Date(data.city.sunset * 1000), lat, lng).split(' ');
@@ -101,7 +113,9 @@ export async function render(fetchFiveDayForecast, lat, lng, metric) {
   for (let i = 0; i < 7; i++) {
     hourlyTimeDom[i].textContent = formatAMPM(new Date(data.list[i].dt * 1000), lat, lng);
     hourlyImgDom[i].src = `src/img/icons/${data.list[i].weather[0].icon}.svg`;
-    hourlyTempDom[i].textContent = `${Math.round(data.list[i].main.temp)}°C`;
+    // hourlyTempDom[i].textContent = `${Math.round(data.list[i].main.temp)}°C`;
+
+    hourlyTempDom[i].dataset.temp = `${Math.round(data.list[i].main.temp)}`;
   }
 
   let j = 0;
@@ -112,11 +126,16 @@ export async function render(fetchFiveDayForecast, lat, lng, metric) {
     fiveDayForecastImgDom[j].src = `src/img/icons/${data.list[i].weather[0].icon.replace('n', 'd')}.svg`; //remove 'n' from weather
 
     const [maxTemp, minTemp] = findMinAndMaxTemp(i, data);
-    fiveDayForecastTempHigh[j].textContent = maxTemp;
-    fiveDayForecastTempLow[j].textContent = minTemp;
+    fiveDayForecastTempHigh[j].dataset.temp = maxTemp;
+    fiveDayForecastTempLow[j].dataset.temp = minTemp;
+    // fiveDayForecastTempHigh[j].textContent = maxTemp;
+    // fiveDayForecastTempLow[j].textContent = minTemp;
 
     j++;
   }
+
+  if (metricDom.checked) convertMetrics('metric');
+  else if (imperialDom.checked) convertMetrics('imperial');
 }
 
 /**
@@ -139,10 +158,47 @@ function findMinAndMaxTemp(startIdx, data) {
 }
 
 /**
- *
  * @param {String} metricStr
  */
 function convertMetrics(metricStr) {
-  if (metricStr === 'metric');
-  if (metricStr === 'imperial');
+  let tempUnit;
+  let tempFunc;
+  if (metricStr === 'metric') {
+    tempFunc = (kelvinTemp) => Math.round(kelvinTemp - 273.15);
+    windSpeedValueDom.textContent = (windSpeedValueDom.dataset.speed * 3.6).toFixed(2);
+    windSpeedUnitDom.textContent = 'km/h';
+    tempUnit = '°C';
+  } else if (metricStr === 'imperial') {
+    tempFunc = (kelvinTemp) => Math.round((kelvinTemp - 273.15) * 1.8 + 32);
+    windSpeedValueDom.textContent = (windSpeedValueDom.dataset.speed * 2.237).toFixed(2);
+    windSpeedUnitDom.textContent = 'mp/h';
+    tempUnit = '°F';
+  }
+
+  for (let i = 0; i < 7; i++) {
+    hourlyTempDom[i].textContent = tempFunc(hourlyTempDom[i].dataset.temp);
+  }
+
+  for (let i = 0; i < 5; i++) {
+    fiveDayForecastTempHigh[i].textContent = tempFunc(fiveDayForecastTempHigh[i].dataset.temp);
+    fiveDayForecastTempLow[i].textContent = tempFunc(fiveDayForecastTempLow[i].dataset.temp);
+  }
+
+  tempDom.textContent = tempFunc(tempDom.dataset.temp);
+  tempHighTextDom.textContent = tempFunc(tempHighTextDom.dataset.temp);
+  tempLowTextDom.textContent = tempFunc(tempLowTextDom.dataset.temp);
+  feelsLikeTempDom.textContent = tempFunc(feelsLikeTempDom.dataset.temp);
+
+  for (let i = 0; i < tempUnitDom.length; i++) {
+    tempUnitDom[i].textContent = tempUnit;
+  }
+  // console.log(tempUnitDom.length);
 }
+
+metricDom.addEventListener('click', (e) => {
+  convertMetrics('metric');
+});
+
+imperialDom.addEventListener('click', (e) => {
+  convertMetrics('imperial');
+});
