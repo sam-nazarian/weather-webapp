@@ -36,12 +36,32 @@
         <p class="weather-description"></p>
         <!-- <img src="src/img/icons/wind.png" alt="weather icon" class="icon" /> -->
         <img src="src/img/icons/01d.svg" alt="weather icon" class="icon" />
-        <p class="temp">22°C</p>
+
+        <div class="temp-container">
+          <p class="temp">22°C</p>
+
+          <div class="high-low-container">
+            <p class="temp-high">↑<span class="temp-high-text">24</span>°C</p>
+            <p class="temp-low">↓<span class="temp-low-text">18</span>°C</p>
+          </div>
+        </div>
+
         <p class="feels-like">Feels like <span class="feels-like-temp">20°C</span></p>
       </div>
 
       <div class="right-col">
-        <p class="date">Thursday, 23:31</p>
+        <div class="date-and-unitswitch-container">
+          <p class="date"></p>
+
+          <div class="switch-field">
+            <input type="radio" id="metric" name="service-switch" value="metric" checked />
+            <label for="metric"> <ion-icon name="partly-sunny-outline" class="icon"></ion-icon>Metric System</label>
+            <!-- label must come after button -->
+
+            <input type="radio" id="imperial" name="service-switch" value="imperial" />
+            <label for="imperial"> <ion-icon name="cloudy-night-outline" class="icon"></ion-icon>Imperial System</label>
+          </div>
+        </div>
 
         <div class="metric-container">
           <div class="metric-card">
@@ -49,7 +69,7 @@
 
             <div class="metric-data">
               <p class="card-title">Humidity</p>
-              <p class="metric-value humidity-value">65</p>
+              <p class="metric-value humidity-value"></p>
               <p class="unit">%</p>
             </div>
           </div>
@@ -59,28 +79,28 @@
 
             <div class="metric-data">
               <p class="card-title">Wind Speed</p>
-              <p class="metric-value wind-speed-value">65</p>
+              <p class="metric-value wind-speed-value"></p>
               <p class="unit">m/s</p>
             </div>
           </div>
 
           <div class="metric-card">
-            <img class="card-img" src="src/img/icons/sunrise.png" alt="humidity icon" />
+            <img class="card-img" src="src/img/icons/sunrise.png" alt="sunrise icon" />
 
             <div class="metric-data">
-              <p class="card-title">Sunset</p>
-              <p class="metric-value visibility-value">10:23</p>
+              <p class="card-title">Sunrise</p>
+              <p class="metric-value sunrise-value"></p>
+              <p class="unit sunrise-unit">am</p>
             </div>
           </div>
 
           <div class="metric-card">
-            <img class="card-img" src="src/img/icons/sunset.png" alt="humidity icon" />
+            <img class="card-img" src="src/img/icons/sunset.png" alt="sunset icon" />
 
             <div class="metric-data">
               <p class="card-title">Sunset</p>
-              <p class="metric-value sunrise-value">5:21</p>
-              <!-- <p class="card-title">Sunset</p>
-              <p class="metric-value">65</p> -->
+              <p class="metric-value sunset-value"></p>
+              <p class="unit sunset-unit">pm</p>
             </div>
           </div>
         </div>
@@ -128,6 +148,38 @@
             <p class="hourly-time">1:00 pm</p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
             <p class="hourly-temp">9°C</p>
+          </div>
+        </div>
+
+        <h2>5-day Forecast</h2>
+
+        <div class="five-day-forecast-container">
+          <div class="hourly-card">
+            <p class="five-day-forecast-day">Today</p>
+            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high">24</span>°C &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low">18</span>°C</p>
+          </div>
+
+          <div class="hourly-card">
+            <p class="five-day-forecast-day">Today</p>
+            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high">24</span>°C &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low">18</span>°C</p>
+          </div>
+          <div class="hourly-card">
+            <p class="five-day-forecast-day">Today</p>
+            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high">24</span>°C &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low">18</span>°C</p>
+          </div>
+          <div class="hourly-card">
+            <p class="five-day-forecast-day">Today</p>
+            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high">24</span>°C &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low">18</span>°C</p>
+          </div>
+
+          <div class="hourly-card">
+            <p class="five-day-forecast-day">Today</p>
+            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high">24</span>°C &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low">18</span>°C</p>
           </div>
         </div>
       </div>

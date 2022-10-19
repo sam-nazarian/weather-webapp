@@ -1,7 +1,7 @@
 .input-container {
   width: 50%;
   margin: 0 auto;
-  margin-top: 12rem;
+  margin-top: 3.6rem;
   margin-bottom: 2.4rem;
 }
 
@@ -114,8 +114,32 @@
   width: 100%;
 }
 
+.temp-container {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  row-gap: 0;
+  column-gap: 0;
+
+  justify-content: center;
+  /* margin-bottom: 3.6rem; */
+}
+
+.high-low-container {
+  margin-top: 1.2rem;
+}
+
+.temp-high {
+  margin-bottom: 0.2rem;
+}
+
+.temp-high,
+.temp-low {
+  font-size: 1.4rem;
+}
+
 .temp {
   font-size: 8.6rem;
+  text-align: right;
 }
 
 .feels-like {
@@ -128,18 +152,60 @@
   padding: 0 3rem;
 }
 
-.date {
+.date-and-unitswitch-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  /* justify-items: center; */
+  row-gap: 2rem;
+  column-gap: 2rem;
+
   margin-top: 4.8rem;
-  font-size: 2.4rem;
   margin-bottom: 2rem;
+}
+
+.date {
+  font-size: 2.4rem;
+  justify-self: left;
+}
+
+.switch-field {
+  overflow: hidden;
+  justify-self: right;
+}
+
+/* Hide radio button circles */
+.switch-field input {
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.switch-field label {
+  font-size: 1.6rem;
+  font-family: inherit;
+  transition: background-color 300ms ease-out;
+}
+
+.switch-field label:not(:last-child) {
+  margin-right: 1.6rem;
+}
+
+.switch-field label:hover {
+  cursor: pointer;
+}
+
+/* 1st label that is selected after checked input */
+.switch-field input:checked+label {
+  color: #008000;
 }
 
 .metric-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   row-gap: 2rem;
   column-gap: 2rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3.6rem;
 }
 
 .metric-card {
@@ -176,24 +242,41 @@
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   row-gap: 2rem;
-  column-gap: 2rem;
+  column-gap: 1.2rem;
   justify-items: center;
   align-items: center;
   text-align: center;
+  padding-bottom: 3.6rem;
 }
 
-.hourly-time {
+.five-day-forecast-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+
+  row-gap: 2rem;
+  column-gap: 3rem;
+  justify-items: center;
+  align-items: center;
+  text-align: center;
+  /* padding-bottom: 4.4rem; */
+  padding-bottom: 3.6rem;
+}
+
+.hourly-time,
+.five-day-forecast-day {
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
 
-.hourly-img {
+.hourly-img,
+.five-day-forecast-img {
   width: 50%;
   margin-bottom: 1rem;
 
 }
 
-.hourly-temp {
+.hourly-temp,
+.five-day-forecast-temp {
   font-size: 1.4rem;
 }
 
