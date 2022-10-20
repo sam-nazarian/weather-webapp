@@ -7,6 +7,7 @@ import { fetchFiveDayForecast, fetchLocationBasedOnIP, getLocation } from './mod
 import { render } from './views/renderView.js';
 import { searchCitiesHandler } from './views/searchView.js';
 import { findLocation } from './views/currentLocationView';
+import { hideLoader, addLoader } from './views/loadView';
 
 //Import images (from icons folder)
 function importAll(r) {
@@ -15,14 +16,22 @@ function importAll(r) {
 importAll(require.context('../img/icons/', false, /\.(png|jpe?g|svg)$/));
 ////////////////////////////////////////////////
 
-(async function () {
-  searchCitiesHandler(fetchFiveDayForecast);
-  findLocation(getLocation);
+async function init() {
+  try {
+    searchCitiesHandler(fetchFiveDayForecast);
+    findLocation(getLocation);
 
-  const { latitude, longitude } = await fetchLocationBasedOnIP();
+    const { latitude, longitude } = await fetchLocationBasedOnIP();
 
-  render(fetchFiveDayForecast, latitude, longitude, true);
-})();
+    render(fetchFiveDayForecast, latitude, longitude, true);
+    hideLoader();
+  } catch (err) {
+    //incase an error happends with fetchLocationBasedOnIP() hide the loader
+    hideLoader();
+  }
+}
+
+init();
 
 // const date = new Date();
 // console.log(new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long' }).format(date));

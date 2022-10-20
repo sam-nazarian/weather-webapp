@@ -25,25 +25,43 @@
         <button class="location-button">
           <img src="src/img/icons/location-icon.svg" alt="location-icon" />
         </button>
-      </div>
 
-      <div class="search-results-location">
-        <!-- class="hide" -->
-        <ul class="search-results-container hide">
-          <!-- <li data-lat="" data-lon="">
+        <div class="search-results-location">
+          <!-- class="hide" -->
+          <ul class="search-results-container hide">
+            <!-- <li data-lat="" data-lon="">
             <div class="search-result-card">
               <h4>CityName, Country</h4>
               <p class="search-result-geolocation">Lat: Long:</p>
             </div>
           </li> -->
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
 
     <h1>Current Weather</h1>
 
-    <div class="container">
+    <!-- class="loading-background" -->
+    <div class="container loading-background">
       <div class="left-col">
+        <!-- class="hide" -->
+        <div class="loading-img">
+          <svg viewBox="0 0 120 30" fill="#000" width="60" height="240">
+            <circle cx="15" cy="15" r="15">
+              <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite"></animate>
+              <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite"></animate>
+            </circle>
+            <circle cx="60" cy="15" r="9" fill-opacity="0.3">
+              <animate attributeName="r" from="9" to="9" begin="0s" dur="0.8s" values="9;15;9" calcMode="linear" repeatCount="indefinite"></animate>
+              <animate attributeName="fill-opacity" from="0.5" to="0.5" begin="0s" dur="0.8s" values=".5;1;.5" calcMode="linear" repeatCount="indefinite"></animate>
+            </circle>
+            <circle cx="105" cy="15" r="15">
+              <animate attributeName="r" from="15" to="15" begin="0s" dur="0.8s" values="15;9;15" calcMode="linear" repeatCount="indefinite"></animate>
+              <animate attributeName="fill-opacity" from="1" to="1" begin="0s" dur="0.8s" values="1;.5;1" calcMode="linear" repeatCount="indefinite"></animate>
+            </circle>
+          </svg>
+        </div>
         <p class="city-name"></p>
         <p class="country-name">Search for city above 👆</p>
         <p class="weather-description"></p>
@@ -51,15 +69,15 @@
         <img src="src/img/icons/01d.svg" alt="weather icon" class="icon" />
 
         <div class="temp-container">
-          <p class="temp"><span class="temp-text" data-temp="">22</span><span class="temp-unit">°C</span></p>
+          <p class="temp"><span class="temp-text" data-temp=""></span><span class="temp-unit"></span></p>
 
           <div class="high-low-container">
-            <p class="temp-high">↑<span class="temp-high-text" data-temp="">24</span><span class="temp-unit">°C</span></p>
-            <p class="temp-low">↓<span class="temp-low-text" data-temp="">18</span><span class="temp-unit">°C</span></p>
+            <p class="temp-high">↑<span class="temp-high-text" data-temp=""></span><span class="temp-unit"></span></p>
+            <p class="temp-low">↓<span class="temp-low-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
         </div>
 
-        <p class="feels-like">Feels like <span class="feels-like-temp" data-temp="">20</span><span class="temp-unit">°C</span></p>
+        <p class="feels-like">Feels like <span class="feels-like-temp" data-temp="">﹖</span><span class="temp-unit"></span></p>
       </div>
 
       <div class="right-col">
@@ -93,7 +111,7 @@
             <div class="metric-data">
               <p class="card-title">Wind Speed</p>
               <p class="metric-value wind-speed-value" data-speed=""></p>
-              <p class="unit wind-speed-unit">m/s</p>
+              <p class="unit wind-speed-unit">km/h</p>
             </div>
           </div>
 
@@ -122,45 +140,45 @@
 
         <div class="hourly-container">
           <div class="hourly-card">
-            <p class="hourly-time">7:00 pm</p>
+            <p class="hourly-time"></p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
-            <p class="hourly-time">10:00 pm</p>
+            <p class="hourly-time"></p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
-            <p class="hourly-time">1:00 am</p>
+            <p class="hourly-time"></p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
-            <p class="hourly-time">4:00 am</p>
+            <p class="hourly-time"></p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
-            <p class="hourly-time">7:00 am</p>
+            <p class="hourly-time"></p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
-            <p class="hourly-time">10:00 am</p>
+            <p class="hourly-time"></p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
-            <p class="hourly-time">1:00 pm</p>
+            <p class="hourly-time"></p>
             <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="hourly-temp"><span class="hourly-temp-text" data-temp="">9</span><span class="temp-unit">°C</span></p>
+            <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
         </div>
 
@@ -168,31 +186,31 @@
 
         <div class="five-day-forecast-container">
           <div class="hourly-card">
-            <p class="five-day-forecast-day">Today</p>
+            <p class="five-day-forecast-day"></p>
             <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp="">24</span><span class="temp-unit">°C</span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp="">18</span><span class="temp-unit">°C</span></p>
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp=""></span><span class="temp-unit"></span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
-            <p class="five-day-forecast-day">Today</p>
+            <p class="five-day-forecast-day"></p>
             <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp="">24</span><span class="temp-unit">°C</span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp="">18</span><span class="temp-unit">°C</span></p>
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp=""></span><span class="temp-unit"></span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
           <div class="hourly-card">
-            <p class="five-day-forecast-day">Today</p>
+            <p class="five-day-forecast-day"></p>
             <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp="">24</span><span class="temp-unit">°C</span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp="">18</span><span class="temp-unit">°C</span></p>
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp=""></span><span class="temp-unit"></span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
           <div class="hourly-card">
-            <p class="five-day-forecast-day">Today</p>
+            <p class="five-day-forecast-day"></p>
             <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp="">24</span><span class="temp-unit">°C</span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp="">18</span><span class="temp-unit">°C</span></p>
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp=""></span><span class="temp-unit"></span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
-            <p class="five-day-forecast-day">Today</p>
+            <p class="five-day-forecast-day"></p>
             <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
-            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp="">24</span><span class="temp-unit">°C</span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp="">18</span><span class="temp-unit">°C</span></p>
+            <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp=""></span><span class="temp-unit"></span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
         </div>
       </div>

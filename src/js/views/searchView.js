@@ -2,6 +2,7 @@
 import { countryCodeEmoji } from 'country-code-emoji';
 import { render } from './renderView.js';
 import { byIso } from 'country-code-lookup';
+import { addLoader } from './loadView';
 
 const search = document.querySelector('.search');
 const matchList = document.querySelector('.search-results-container');
@@ -66,6 +67,7 @@ export function searchCitiesHandler(fetchFiveDayForecast) {
     const selectedCard = e.target.closest('.search-result-card');
     if (!selectedCard) return;
 
+    addLoader();
     render(fetchFiveDayForecast, selectedCard.dataset.lat, selectedCard.dataset.lon, true);
 
     search.value = '';

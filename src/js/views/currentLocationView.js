@@ -2,12 +2,14 @@ const locationButton = document.querySelector('.location-button');
 const errMessageDom = document.querySelector('.err-message');
 const errContainerDom = document.querySelector('.err-container');
 import { render } from './renderView.js';
+import { hideLoader, addLoader } from './loadView';
 
 let errTimeout = 0;
 
 export function findLocation(getLocation) {
   locationButton.addEventListener('click', () => {
-    getLocation(showError, render);
+    getLocation(showError, render, hideLoader);
+    addLoader();
   });
 }
 

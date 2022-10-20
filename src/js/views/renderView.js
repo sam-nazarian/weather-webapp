@@ -1,5 +1,6 @@
 import { byIso } from 'country-code-lookup';
 import { countryCodeEmoji } from 'country-code-emoji';
+import { hideLoader } from './loadView';
 import ts from '@mapbox/timespace';
 
 const cityNameDom = document.querySelector('.city-name');
@@ -136,6 +137,8 @@ export async function render(fetchFiveDayForecast, lat, lng, metric) {
 
   if (metricDom.checked) convertMetrics('metric');
   else if (imperialDom.checked) convertMetrics('imperial');
+
+  hideLoader();
 }
 
 /**
