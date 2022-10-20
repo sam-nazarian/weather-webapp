@@ -6,6 +6,7 @@ import { byIso } from 'country-code-lookup';
 const search = document.querySelector('.search');
 const matchList = document.querySelector('.search-results-container');
 const inputContainer = document.querySelector('.input-container');
+const locationButton = document.querySelector('.location-button');
 
 //cities will be set to cities.json as soon as it's fetch is complete
 //this way the browser's execution doesn't stop & wait to load cities.json
@@ -69,6 +70,8 @@ export function searchCitiesHandler(fetchFiveDayForecast) {
 
     search.value = '';
     matchList.classList.add('hide');
+    locationButton.classList.remove('location-button-active');
+
     // console.log(selectedCard.dataset.city);
     // console.log(selectedCard.dataset.lat);
     // console.log(selectedCard.dataset.lon);

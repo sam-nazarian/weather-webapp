@@ -11,8 +11,21 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
+    <!-- class="err-container-active" -->
+    <div class="err-container">
+      <p class="err-message">Can't get your current location, permision is required!</p>
+      <!-- <button class="btn-close-err-container">X</button> -->
+    </div>
+
     <div class="input-container">
-      <input type="text" class="search" placeholder="Search a city..." />
+      <div class="search-container">
+        <input type="text" class="search" placeholder="Search a city..." />
+
+        <!-- class="location-button-active" -->
+        <button class="location-button">
+          <img src="src/img/icons/location-icon.svg" alt="location-icon" />
+        </button>
+      </div>
 
       <div class="search-results-location">
         <!-- class="hide" -->

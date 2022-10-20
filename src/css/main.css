@@ -1,8 +1,82 @@
+.err-container {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  z-index: 9999;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 1.6rem 15rem;
+  -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  background-color: #eb4d4b;
+  color: #fff;
+  display: none;
+}
+
+.err-message {
+  font-size: 1.8rem;
+
+  /* keep text in 1 line */
+  white-space: nowrap;
+}
+
+.err-container-active {
+  /* use flex if you want to add close button to err-container */
+  /* display: inline-flex; */
+  display: block;
+}
+
 .input-container {
   width: 50%;
   margin: 0 auto;
-  margin-top: 3.6rem;
+  margin-top: 7.4rem;
   margin-bottom: 2.4rem;
+}
+
+.search-container {
+  display: flex;
+  column-gap: 0.5rem;
+
+  row-gap: 0rem;
+  grid-template-columns: 1fr max-content;
+  cursor: pointer;
+
+}
+
+.location-button {
+  width: 5.2rem;
+  padding: 0.3rem;
+  border-radius: 10px;
+  cursor: pointer;
+
+
+  border: none;
+  background-color: #adb5bd;
+
+  transition: background-color 300ms ease-out;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 10%);
+}
+
+.location-button:hover {
+  background-color: #bdc4ca;
+}
+
+.location-button-active {
+  background-color: #74c0fc;
+}
+
+.location-button.location-button-active {
+  transition: none;
+  cursor: default;
+}
+
+.location-button-active:hover {
+  background-color: #74c0fc;
 }
 
 .search {

@@ -3,9 +3,10 @@ import generalStyle from '../css/general.css';
 import mainStyle from '../css/main.css';
 
 // Files
-import { fetchFiveDayForecast, fetchLocationBasedOnIP } from './model.js';
+import { fetchFiveDayForecast, fetchLocationBasedOnIP, getLocation } from './model.js';
 import { render } from './views/renderView.js';
 import { searchCitiesHandler } from './views/searchView.js';
+import { findLocation } from './views/currentLocationView';
 
 //Import images (from icons folder)
 function importAll(r) {
@@ -16,6 +17,8 @@ importAll(require.context('../img/icons/', false, /\.(png|jpe?g|svg)$/));
 
 (async function () {
   searchCitiesHandler(fetchFiveDayForecast);
+  findLocation(getLocation);
+
   const { latitude, longitude } = await fetchLocationBasedOnIP();
 
   render(fetchFiveDayForecast, latitude, longitude, true);
