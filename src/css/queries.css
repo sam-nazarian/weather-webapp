@@ -266,6 +266,10 @@
 /* <= 310px */
 @media (max-width: 19.375em) {
 
+  h1 {
+    font-size: 2.6rem;
+  }
+
   .err-message {
     font-size: 1.0rem;
   }

@@ -1,6 +1,17 @@
+// Import Files
 import { OPENWEATHER_API_KEY } from './config.js';
+
+// Import DOM
 const locationButton = document.querySelector('.location-button');
 
+////////////////////////////////////////////////
+
+/**
+ * Fetch the 5-day weather forecast from openweathermap's API
+ * @param {String} lat latitude
+ * @param {String} lon longitude
+ * @returns {Object} data result of the fetch
+ */
 export async function fetchFiveDayForecast(lat, lon) {
   try {
     const getWeatherData = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}`);
@@ -11,6 +22,10 @@ export async function fetchFiveDayForecast(lat, lon) {
   }
 }
 
+/**
+ * fetches latitude & longitude based on user's IP address without required permission
+ * @returns {Object} {latitude, longitude}
+ */
 export async function fetchLocationBasedOnIP() {
   try {
     const getLatLongData = await fetch(`https://geolocation-db.com/json/`);
@@ -22,8 +37,12 @@ export async function fetchLocationBasedOnIP() {
   }
 }
 
-//////////////////////////
-
+/**
+ * Render weather based on user's geolocation data that's gathered from the geolocation API
+ * @param {Function} showError function that shows error on the screen
+ * @param {Function} render function that renders the weather
+ * @param {Function} hideLoader function that hides the loader & blury screen, when the weather is rendered
+ */
 export function getLocation(showError, render, hideLoader) {
   const geoOptions = {
     timeout: 5000,

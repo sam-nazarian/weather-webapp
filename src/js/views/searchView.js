@@ -1,13 +1,16 @@
-// import cities from '../../data/cities.json';
+// Import Files
 import { countryCodeEmoji } from 'country-code-emoji';
 import { render } from './renderView.js';
 import { byIso } from 'country-code-lookup';
 import { addLoader } from './loadView';
 
+// Import DOM
 const search = document.querySelector('.search');
 const matchList = document.querySelector('.search-results-container');
 const inputContainer = document.querySelector('.input-container');
 const locationButton = document.querySelector('.location-button');
+
+////////////////////////////////////////////////
 
 //cities will be set to cities.json as soon as it's fetch is complete
 //this way the browser's execution doesn't stop & wait to load cities.json
@@ -16,10 +19,12 @@ let cities = undefined;
   cities = await import('../../data/cities.json');
 })();
 
-// Search cities.json & filter it
+/**
+ * Search in cities.json, finds cities that match with searchText, & show output the first five results to the DOM
+ * @param {String} searchText the value that the user searches for eg. "winnipeg"
+ */
 const searchCities = async function (searchText) {
   if (searchText.length === 0) {
-    // matchList.innerHTML = '';
     if (!matchList.classList.contains('hide')) matchList.classList.add('hide');
     return;
   }
@@ -40,7 +45,10 @@ const searchCities = async function (searchText) {
   outputHtml(matches);
 };
 
-// Show results in HTML
+/**
+ * output the matches results by adding them to the HTML
+ * @param {array} matches array of country objects which will be rendered in the html
+ */
 const outputHtml = function (matches) {
   if (matches.length > 0) {
     const html = matches
@@ -61,6 +69,10 @@ const outputHtml = function (matches) {
   }
 };
 
+/**
+ * Adds event listeners that allow the user to search for cities & click on their matched city to load it
+ * @param {Function} fetchFiveDayForecast function that fetches for the 5-day-forecast of the weather
+ */
 export function searchCitiesHandler(fetchFiveDayForecast) {
   // When a card is clicked render it
   matchList.addEventListener('click', function (e) {
@@ -73,10 +85,6 @@ export function searchCitiesHandler(fetchFiveDayForecast) {
     search.value = '';
     matchList.classList.add('hide');
     locationButton.classList.remove('location-button-active');
-
-    // console.log(selectedCard.dataset.city);
-    // console.log(selectedCard.dataset.lat);
-    // console.log(selectedCard.dataset.lon);
   });
 
   // When an input is added search for cities
@@ -87,9 +95,8 @@ export function searchCitiesHandler(fetchFiveDayForecast) {
     if (search.value.length >= 1 && matchList.classList.contains('hide')) matchList.classList.remove('hide');
   });
 
-  // Remove search when outside is clicked
+  // Remove search when outside the search area is clicked
   window.addEventListener('click', function (e) {
-    // Clicked outside search box
     if (!inputContainer.contains(e.target) && !matchList.classList.contains('hide')) matchList.classList.add('hide');
   });
 }
