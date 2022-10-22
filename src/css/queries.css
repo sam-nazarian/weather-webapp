@@ -58,8 +58,19 @@
 }
 
 
-/* <= 884px */
-@media (max-width: 55.25em) {
+/* <= 924px */
+@media (max-width: 57.75em) {
+
+  .input-container {
+    width: 85%;
+    /* margin: 0 auto;
+    margin-top: 7.4rem;
+    margin-bottom: 2.4rem; */
+  }
+
+  .icon {
+    width: 29%;
+  }
 
   .date-and-unitswitch-container {
     grid-template-columns: 1fr;
@@ -97,21 +108,169 @@
     -webkit-overflow-scrolling: touch;
   }
 
-  .hourly-img {
-    width: 10rem;
-  }
-
+  .hourly-img,
   .five-day-forecast-img {
     width: 10rem;
   }
 
+  /* .five-day-forecast-img {
+    width: 10rem;
+  } */
+
+}
+
+
+/* <= 638px */
+@media (max-width: 39.875em) {
+  .icon {
+    width: 35%;
+  }
 }
 
 /* <= 513px */
 @media (max-width: 32.0625em) {
 
+  .err-message {
+    font-size: 1.5rem;
+  }
+
+  .left-col {
+    padding: 3rem 1rem;
+  }
+
   .hourly-container,
   .five-day-forecast-container {
     max-width: 75vw;
+  }
+
+  .metric-container {
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+    margin-bottom: 3.6rem;
+  }
+
+  .icon {
+    width: 40%;
+  }
+
+  .card-img {
+    width: 54%;
+  }
+
+  .hourly-img,
+  .five-day-forecast-img {
+    width: 9rem;
+  }
+
+}
+
+/* <=424px */
+@media (max-width: 26.5em) {
+
+  .err-message {
+    font-size: 1.2rem;
+  }
+
+  .right-col {
+    padding: 0 1rem;
+  }
+
+  .city-name {
+    font-size: 2.4rem;
+  }
+
+  .country-name {
+    font-size: 3rem;
+  }
+
+  .temp {
+    font-size: 7.4rem
+  }
+
+  .weather-description {
+    font-size: 2rem;
+  }
+
+  .input-container {
+    width: 95%;
+  }
+
+  .date {
+    font-size: 2rem;
+  }
+
+  .container {
+    grid-template-columns: 1fr;
+    margin: 0 0.75rem;
+    /* border-radius: 0; */
+    margin-bottom: 1rem;
+  }
+
+  .hourly-container,
+  .five-day-forecast-container {
+    max-width: 85vw;
+  }
+
+  .card-img {
+    width: 70%;
+  }
+
+}
+
+/* <=350px */
+@media (max-width: 21.875em) {
+
+  .err-message {
+    font-size: 1.1rem;
+  }
+
+  .hourly-container,
+  .five-day-forecast-container {
+    max-width: 75vw;
+  }
+
+  .date-and-unitswitch-container {
+    row-gap: 1.8rem;
+    margin-bottom: 2.4rem;
+  }
+
+  .date {
+    font-size: 1.8rem;
+  }
+
+  .switch-field input {
+    /* position: relative; */
+    display: grid;
+    /* row-gap: 4rem; */
+    /* justify-items: center; */
+    /* align-items: center; */
+  }
+
+  .switch-field label:not(:last-child) {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .switch-field label {
+    text-align: center;
+    display: block;
+  }
+
+  .hourly-img,
+  .five-day-forecast-img {
+    width: 8rem;
+  }
+
+}
+
+/* <= 310px */
+@media (max-width: 19.375em) {
+
+  .err-message {
+    font-size: 1.0rem;
+  }
+
+  .date {
+    font-size: 1.6rem;
   }
 }

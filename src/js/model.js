@@ -33,7 +33,7 @@ export function getLocation(showError, render, hideLoader) {
     navigator.geolocation.getCurrentPosition(showPosition, failedLoading, geoOptions);
   } else {
     hideLoader();
-    showError(`Can't get your current location, permision is required!`);
+    showError(`Can't get your current location, permission is required!`);
   }
 
   function showPosition(position) {
@@ -44,6 +44,6 @@ export function getLocation(showError, render, hideLoader) {
 
   function failedLoading() {
     hideLoader();
-    showError(`Can't get your current location, permision is required!`);
+    showError(`Can't get your current location, permission is required!`);
   }
 }

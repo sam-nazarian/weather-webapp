@@ -175,7 +175,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(50%, -50%);
+  transform: translate(-50%, -50%);
   z-index: 9999999999999;
   filter: none;
   -webkit-filter: none;
@@ -185,7 +185,6 @@
   background-color: #fff;
   text-align: center;
   padding: 4.8rem;
-
 }
 
 .city-name {
