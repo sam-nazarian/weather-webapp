@@ -174,7 +174,7 @@ function convertMetrics(metricStr) {
   } else if (metricStr === 'imperial') {
     tempFunc = (kelvinTemp) => Math.round((kelvinTemp - 273.15) * 1.8 + 32);
     windSpeedValueDom.textContent = (windSpeedValueDom.dataset.speed * 2.237).toFixed(2);
-    windSpeedUnitDom.textContent = 'mp/h';
+    windSpeedUnitDom.textContent = 'mi/h';
     tempUnit = '°F';
   }
 

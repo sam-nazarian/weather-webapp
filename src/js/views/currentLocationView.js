@@ -8,6 +8,7 @@ let errTimeout = 0;
 
 export function findLocation(getLocation) {
   locationButton.addEventListener('click', () => {
+    if (locationButton.classList.contains('location-button-active')) return;
     getLocation(showError, render, hideLoader);
     addLoader();
   });

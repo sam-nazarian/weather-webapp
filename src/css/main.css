@@ -151,10 +151,8 @@
 
 .container {
   display: grid;
-  row-gap: 9.6rem;
   grid-template-columns: 1.5fr 3fr;
   margin: 0 30rem;
-
   margin-bottom: 4rem;
 
   /* border-collapse: separate; */
@@ -178,6 +176,9 @@
   top: 50%;
   left: 50%;
   transform: translate(50%, -50%);
+  z-index: 9999999999999;
+  filter: none;
+  -webkit-filter: none;
 }
 
 .left-col {

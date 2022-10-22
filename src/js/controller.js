@@ -1,6 +1,7 @@
 // Styles
 import generalStyle from '../css/general.css';
 import mainStyle from '../css/main.css';
+import queriesStyle from '../css/queries.css';
 
 // Files
 import { fetchFiveDayForecast, fetchLocationBasedOnIP, getLocation } from './model.js';
@@ -24,7 +25,7 @@ async function init() {
     const { latitude, longitude } = await fetchLocationBasedOnIP();
 
     render(fetchFiveDayForecast, latitude, longitude, true);
-    hideLoader();
+    // hideLoader();
   } catch (err) {
     //incase an error happends with fetchLocationBasedOnIP() hide the loader
     hideLoader();

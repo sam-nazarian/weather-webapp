@@ -1,0 +1,117 @@
+/* 1em = 16px */
+
+/* <= 1'744px */
+@media (max-width: 109em) {
+  .container {
+    margin: 0 20rem;
+    margin-bottom: 4rem;
+    /* grid-template-columns: 1.5fr 3fr; */
+  }
+
+  .input-container {
+    width: 55%;
+    /* margin: 0 auto; */
+    /* margin-top: 7.4rem; */
+    /* margin-bottom: 2.4rem; */
+  }
+}
+
+
+/* <= 1'530px */
+@media (max-width: 95.625em) {
+  .container {
+    margin: 0 15rem;
+    margin-bottom: 4rem;
+    /* grid-template-columns: 1.5fr 3fr; */
+  }
+}
+
+
+/* <= 1'424px */
+@media (max-width: 89em) {
+  .container {
+    margin: 0 10rem;
+    margin-bottom: 4rem;
+    /* grid-template-columns: 1.5fr 3fr; */
+  }
+
+  .input-container {
+    width: 63%;
+  }
+}
+
+/* <= 1279px */
+@media (max-width: 79.9375em) {
+  .container {
+    grid-template-columns: 1fr;
+    margin: 0 10rem;
+    margin-bottom: 4rem;
+  }
+
+  .icon {
+    width: 20%;
+  }
+
+  .card-img {
+    width: 70%;
+  }
+}
+
+
+/* <= 884px */
+@media (max-width: 55.25em) {
+
+  .date-and-unitswitch-container {
+    grid-template-columns: 1fr;
+    row-gap: 1rem;
+    justify-items: center;
+
+    margin-bottom: 3.0rem;
+  }
+
+  .date {
+    /* font-size: 2.4rem; */
+    justify-self: center;
+  }
+
+  .switch-field {
+    justify-self: center;
+  }
+
+
+  /* adding scrollbar to forecasts */
+  .container {
+    grid-template-columns: 1fr;
+    margin: 0 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .hourly-container,
+  .five-day-forecast-container {
+    margin: 0 auto;
+    max-width: 85vw;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    column-gap: 3rem;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .hourly-img {
+    width: 10rem;
+  }
+
+  .five-day-forecast-img {
+    width: 10rem;
+  }
+
+}
+
+/* <= 513px */
+@media (max-width: 32.0625em) {
+
+  .hourly-container,
+  .five-day-forecast-container {
+    max-width: 75vw;
+  }
+}
