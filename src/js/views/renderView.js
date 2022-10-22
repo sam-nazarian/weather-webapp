@@ -1,3 +1,4 @@
+import convertMetrics from './convertMetricsView';
 import { byIso } from 'country-code-lookup';
 import { countryCodeEmoji } from 'country-code-emoji';
 import { hideLoader } from './loadView';
@@ -16,7 +17,6 @@ const tempLowTextDom = document.querySelector('.temp-low-text');
 const feelsLikeTempDom = document.querySelector('.feels-like-temp');
 const humidityValueDom = document.querySelector('.humidity-value');
 const windSpeedValueDom = document.querySelector('.wind-speed-value');
-const windSpeedUnitDom = document.querySelector('.wind-speed-unit');
 
 const sunriseValueDom = document.querySelector('.sunrise-value');
 const sunsetValueDom = document.querySelector('.sunset-value');
@@ -32,49 +32,14 @@ const hourlyTempDom = Array.from(document.querySelectorAll('.hourly-temp-text'))
 const fiveDayForecastDayDom = document.querySelectorAll('.five-day-forecast-day');
 const fiveDayForecastImgDom = document.querySelectorAll('.five-day-forecast-img');
 
-const tempUnitDom = Array.from(document.querySelectorAll('.temp-unit'));
-
 const fiveDayForecastTempHigh = document.querySelectorAll('.five-day-forecast-temp-high');
 const fiveDayForecastTempLow = document.querySelectorAll('.five-day-forecast-temp-low');
 
-// Metrics
+// Metric Buttons
 const metricDom = document.getElementById('metric');
 const imperialDom = document.getElementById('imperial');
 
 //////////////////////////
-function getHours(internationalTime) {
-  let hours = internationalTime.hours();
-  let minutes = internationalTime.minutes();
-
-  const ampm = hours >= 12 ? 'pm' : 'am';
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0' + minutes : minutes;
-  const strTime = hours + ':' + minutes + ' ' + ampm;
-  return strTime;
-}
-
-function formatAMPM(date, lat, lng) {
-  const internationalTime = ts.getFuzzyLocalTimeFromPoint(date, [lng, lat]);
-  return getHours(internationalTime);
-}
-
-function formatTodaysDate(date, lat, lng) {
-  const internationalTime = ts.getFuzzyLocalTimeFromPoint(date, [lng, lat]);
-
-  const hours = getHours(internationalTime);
-  const [day, month, dateVal, year] = internationalTime.toString().split(' ');
-  const str = `${day}, ${month} ${dateVal}, ${year}, ${hours}`;
-
-  return str;
-}
-
-function formatWeekDayName(date, lat, lng) {
-  const internationalTime = ts.getFuzzyLocalTimeFromPoint(date, [lng, lat]);
-  const [day] = internationalTime.toString().split(' ');
-
-  return day;
-}
 
 export async function render(fetchFiveDayForecast, lat, lng, metric) {
   //fetch for data
@@ -119,6 +84,7 @@ export async function render(fetchFiveDayForecast, lat, lng, metric) {
     hourlyTempDom[i].dataset.temp = `${Math.round(data.list[i].main.temp)}`;
   }
 
+  //render 5-day forecast
   let j = 0;
   for (let i = 0; i < 40; i += 8) {
     if (j === 0) fiveDayForecastDayDom[j].textContent = 'Today';
@@ -142,10 +108,70 @@ export async function render(fetchFiveDayForecast, lat, lng, metric) {
 }
 
 /**
- * Go through data arr & find min & max temp for the day
- * @param {*} startIdx
- * @param {*} data
- * @returns
+ * Convert the time to am/pm format eg. "11:56 am"
+ * @param {Object} internationalTime a moment-timezone object Object which is returned from ts.getFuzzyLocalTimeFromPoint()
+ * @returns the formatted time eg. "11:56 am"
+ */
+function getHours(internationalTime) {
+  let hours = internationalTime.hours();
+  let minutes = internationalTime.minutes();
+
+  const ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  const strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+}
+
+/**
+ * Get the current time of location based on the longitude & latitude in am/pm format & return it
+ * @param {Object} date Date instance returned from Date() constructor
+ * @param {String} lat latitude
+ * @param {String} lng longitude
+ * @returns current time of location in am/pm format eg. "11:56 am"
+ */
+function formatAMPM(date, lat, lng) {
+  const internationalTime = ts.getFuzzyLocalTimeFromPoint(date, [lng, lat]);
+  return getHours(internationalTime);
+}
+
+/**
+ * Return todays date in string format eg. "Sat, Oct 22, 2022, 5:10 am"
+ * @param {Object} date Date instance returned from Date() constructor
+ * @param {String} lat latitude
+ * @param {String} lng longitude
+ * @returns todays date in string format eg. "Sat, Oct 22, 2022, 5:10 am"
+ */
+function formatTodaysDate(date, lat, lng) {
+  const internationalTime = ts.getFuzzyLocalTimeFromPoint(date, [lng, lat]);
+
+  const hours = getHours(internationalTime);
+  const [day, month, dateVal, year] = internationalTime.toString().split(' ');
+  const str = `${day}, ${month} ${dateVal}, ${year}, ${hours}`;
+
+  return str;
+}
+
+/**
+ * return today's name of day eg. "Mon"
+ * @param {Object} date Date instance returned from Date() constructor
+ * @param {String} lat latitude
+ * @param {String} lng longitude
+ * @returns today's name of day eg. "Mon"
+ */
+function formatWeekDayName(date, lat, lng) {
+  const internationalTime = ts.getFuzzyLocalTimeFromPoint(date, [lng, lat]);
+  const [day] = internationalTime.toString().split(' ');
+
+  return day;
+}
+
+/**
+ * Go through data arr & find min & max temp for that day
+ * @param {Number} startIdx where to start searching from (in the data array)
+ * @param {Object} data the data object to look for the temperature
+ * @returns {Array} [highestTemp, lowestTemp] highest/lowest temps within a 24-hour period after the start time
  */
 function findMinAndMaxTemp(startIdx, data) {
   let maxTemp = -Infinity;
@@ -153,55 +179,9 @@ function findMinAndMaxTemp(startIdx, data) {
 
   //loop through something for 8 times
   for (let i = startIdx; i < startIdx + 8; i++) {
-    maxTemp = Math.max(maxTemp, data.list[i].main.temp_max);
-    minTemp = Math.min(minTemp, data.list[i].main.temp_min);
+    maxTemp = Math.max(maxTemp, data.list[i].main.temp);
+    minTemp = Math.min(minTemp, data.list[i].main.temp);
   }
 
   return [Math.round(maxTemp), Math.round(minTemp)];
 }
-
-/**
- * @param {String} metricStr
- */
-function convertMetrics(metricStr) {
-  let tempUnit;
-  let tempFunc;
-  if (metricStr === 'metric') {
-    tempFunc = (kelvinTemp) => Math.round(kelvinTemp - 273.15);
-    windSpeedValueDom.textContent = (windSpeedValueDom.dataset.speed * 3.6).toFixed(2);
-    windSpeedUnitDom.textContent = 'km/h';
-    tempUnit = '°C';
-  } else if (metricStr === 'imperial') {
-    tempFunc = (kelvinTemp) => Math.round((kelvinTemp - 273.15) * 1.8 + 32);
-    windSpeedValueDom.textContent = (windSpeedValueDom.dataset.speed * 2.237).toFixed(2);
-    windSpeedUnitDom.textContent = 'mi/h';
-    tempUnit = '°F';
-  }
-
-  for (let i = 0; i < 7; i++) {
-    hourlyTempDom[i].textContent = tempFunc(hourlyTempDom[i].dataset.temp);
-  }
-
-  for (let i = 0; i < 5; i++) {
-    fiveDayForecastTempHigh[i].textContent = tempFunc(fiveDayForecastTempHigh[i].dataset.temp);
-    fiveDayForecastTempLow[i].textContent = tempFunc(fiveDayForecastTempLow[i].dataset.temp);
-  }
-
-  tempDom.textContent = tempFunc(tempDom.dataset.temp);
-  tempHighTextDom.textContent = tempFunc(tempHighTextDom.dataset.temp);
-  tempLowTextDom.textContent = tempFunc(tempLowTextDom.dataset.temp);
-  feelsLikeTempDom.textContent = tempFunc(feelsLikeTempDom.dataset.temp);
-
-  for (let i = 0; i < tempUnitDom.length; i++) {
-    tempUnitDom[i].textContent = tempUnit;
-  }
-  // console.log(tempUnitDom.length);
-}
-
-metricDom.addEventListener('click', (e) => {
-  convertMetrics('metric');
-});
-
-imperialDom.addEventListener('click', (e) => {
-  convertMetrics('imperial');
-});
