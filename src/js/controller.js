@@ -13,7 +13,7 @@ importAll(require.context('../img/icons/', false, /\.(png|jpe?g|svg)$/));
 import { fetchFiveDayForecast, fetchLocationBasedOnIP, getLocation } from './model.js';
 import { render } from './views/renderView.js';
 import { searchCitiesHandler } from './views/searchView.js';
-import { findLocation } from './views/currentLocationView';
+import { findLocation, updateCopyrightDate } from './views/currentLocationView';
 import { hideLoader } from './views/loadView';
 
 ////////////////////////////////////////////////
@@ -28,6 +28,7 @@ async function init() {
   try {
     searchCitiesHandler(fetchFiveDayForecast);
     findLocation(getLocation);
+    updateCopyrightDate();
 
     const { latitude, longitude } = await fetchLocationBasedOnIP();
     render(fetchFiveDayForecast, latitude, longitude);

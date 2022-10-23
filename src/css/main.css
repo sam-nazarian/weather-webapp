@@ -153,7 +153,7 @@
   display: grid;
   grid-template-columns: 1.5fr 3fr;
   margin: 0 30rem;
-  margin-bottom: 4rem;
+  /* margin-bottom: 4rem; */
 
   /* border-collapse: separate; */
   border-radius: 25px;
@@ -390,4 +390,24 @@ h2 {
   text-transform: uppercase;
   text-align: right;
   letter-spacing: -0.7px;
+}
+
+.copyright-container {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1rem;
+  color: #777;
+}
+
+.footer-link:link,
+.footer-link:visited {
+  color: #1971c2;
+  /* font-weight: 700; */
+  text-decoration: none;
+}
+
+.footer-link:hover,
+.footer-link:active {
+  color: #1864ab;
 }

@@ -4,7 +4,7 @@
 @media (max-width: 109em) {
   .container {
     margin: 0 20rem;
-    margin-bottom: 4rem;
+    /* margin-bottom: 4rem; */
     /* grid-template-columns: 1.5fr 3fr; */
   }
 
@@ -21,7 +21,7 @@
 @media (max-width: 95.625em) {
   .container {
     margin: 0 15rem;
-    margin-bottom: 4rem;
+    /* margin-bottom: 4rem; */
     /* grid-template-columns: 1.5fr 3fr; */
   }
 }
@@ -31,7 +31,7 @@
 @media (max-width: 89em) {
   .container {
     margin: 0 10rem;
-    margin-bottom: 4rem;
+    /* margin-bottom: 4rem; */
     /* grid-template-columns: 1.5fr 3fr; */
   }
 
@@ -45,7 +45,7 @@
   .container {
     grid-template-columns: 1fr;
     margin: 0 10rem;
-    margin-bottom: 4rem;
+    /* margin-bottom: 4rem; */
   }
 
   .icon {
@@ -94,7 +94,7 @@
   .container {
     grid-template-columns: 1fr;
     margin: 0 2rem;
-    margin-bottom: 4rem;
+    /* margin-bottom: 4rem; */
   }
 
   .hourly-container,
@@ -203,7 +203,7 @@
     grid-template-columns: 1fr;
     margin: 0 0.75rem;
     /* border-radius: 0; */
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
   }
 
   .hourly-container,
@@ -222,6 +222,10 @@
 
   .err-message {
     font-size: 1.1rem;
+  }
+
+  .container {
+    margin: 0 0.45rem;
   }
 
   .hourly-container,
@@ -261,20 +265,32 @@
     width: 8rem;
   }
 
+  .copyright-container {
+    font-size: 0.9rem;
+  }
+
 }
 
 /* <= 310px */
 @media (max-width: 19.375em) {
 
-  h1 {
-    font-size: 2.6rem;
-  }
-
   .err-message {
     font-size: 1.0rem;
   }
 
+  h1 {
+    font-size: 2.6rem;
+  }
+
+  .container {
+    margin: 0 0.3rem;
+  }
+
   .date {
     font-size: 1.6rem;
+  }
+
+  .copyright-container {
+    font-size: 0.85rem;
   }
 }

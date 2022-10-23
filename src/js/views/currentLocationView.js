@@ -6,6 +6,7 @@ import { hideLoader, addLoader } from './loadView';
 const locationButton = document.querySelector('.location-button');
 const errMessageDom = document.querySelector('.err-message');
 const errContainerDom = document.querySelector('.err-container');
+const yearDom = document.querySelector('.year');
 
 // Global variable
 let errTimeout = 0;
@@ -34,4 +35,12 @@ function showError(text) {
   errTimeout = window.setTimeout(() => {
     errContainerDom.classList.remove('err-container-active');
   }, 1400);
+}
+
+/**
+ * Set current year on copyright paragraph
+ */
+export function updateCopyrightDate() {
+  console.log('hello');
+  yearDom.textContent = new Date().getFullYear();
 }
