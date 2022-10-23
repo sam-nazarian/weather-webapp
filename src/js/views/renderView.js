@@ -1,118 +1,145 @@
+// Import Files
 import convertMetrics from './convertMetricsView';
 import { byIso } from 'country-code-lookup';
 import { countryCodeEmoji } from 'country-code-emoji';
 import { hideLoader } from './loadView';
 import ts from '@mapbox/timespace';
 
+// Import DOM
+// Left-col segment
 const cityNameDom = document.querySelector('.city-name');
 const countryNameDom = document.querySelector('.country-name');
-const dateDom = document.querySelector('.date');
-
 const weatherDescriptionDom = document.querySelector('.weather-description');
-const iconDom = document.querySelector('.icon');
 const tempDom = document.querySelector('.temp-text');
+const iconDom = document.querySelector('.icon');
 const tempHighTextDom = document.querySelector('.temp-high-text');
 const tempLowTextDom = document.querySelector('.temp-low-text');
-
 const feelsLikeTempDom = document.querySelector('.feels-like-temp');
-const humidityValueDom = document.querySelector('.humidity-value');
-const windSpeedValueDom = document.querySelector('.wind-speed-value');
-
-const sunriseValueDom = document.querySelector('.sunrise-value');
-const sunsetValueDom = document.querySelector('.sunset-value');
-const sunriseUnitDom = document.querySelector('.sunrise-unit');
-const sunsetUnitDom = document.querySelector('.sunset-unit');
-
-// const hourlyCard = document.querySelectorAll('.hourly-card');
-const hourlyTimeDom = Array.from(document.querySelectorAll('.hourly-time'));
-const hourlyImgDom = Array.from(document.querySelectorAll('.hourly-img'));
-const hourlyTempDom = Array.from(document.querySelectorAll('.hourly-temp-text'));
-
-//5-DAY-FORECAST
-const fiveDayForecastDayDom = document.querySelectorAll('.five-day-forecast-day');
-const fiveDayForecastImgDom = document.querySelectorAll('.five-day-forecast-img');
-
-const fiveDayForecastTempHigh = document.querySelectorAll('.five-day-forecast-temp-high');
-const fiveDayForecastTempLow = document.querySelectorAll('.five-day-forecast-temp-low');
 
 // Metric Buttons
 const metricDom = document.getElementById('metric');
 const imperialDom = document.getElementById('imperial');
 
+// Metric card segment
+const dateDom = document.querySelector('.date');
+const humidityValueDom = document.querySelector('.humidity-value');
+const windSpeedValueDom = document.querySelector('.wind-speed-value');
+const sunriseValueDom = document.querySelector('.sunrise-value');
+const sunsetValueDom = document.querySelector('.sunset-value');
+const sunriseUnitDom = document.querySelector('.sunrise-unit');
+const sunsetUnitDom = document.querySelector('.sunset-unit');
+
+// Hourly forecast segment
+const hourlyTimeDom = Array.from(document.querySelectorAll('.hourly-time'));
+const hourlyImgDom = Array.from(document.querySelectorAll('.hourly-img'));
+const hourlyTempDom = Array.from(document.querySelectorAll('.hourly-temp-text'));
+
+// 5-day-forecast segment
+const fiveDayForecastDayDom = document.querySelectorAll('.five-day-forecast-day');
+const fiveDayForecastImgDom = document.querySelectorAll('.five-day-forecast-img');
+const fiveDayForecastTempHigh = document.querySelectorAll('.five-day-forecast-temp-high');
+const fiveDayForecastTempLow = document.querySelectorAll('.five-day-forecast-temp-low');
+
 //////////////////////////
 
+/**
+ * Renders weather information based on location by changing the DOM
+ * @param {Function} fetchFiveDayForecast function that fetches for the 5-day-forecast of the weather
+ * @param {String} lat latitude
+ * @param {String} lng longitude
+ */
 export async function render(fetchFiveDayForecast, lat, lng, metric) {
-  //fetch for data
+  // Fetch data
   const data = await fetchFiveDayForecast(lat, lng);
 
-  dateDom.textContent = formatTodaysDate(new Date(), lat, lng);
-
-  //render data
+  // Render left-col
   cityNameDom.textContent = `${data.city.name}`;
   countryNameDom.textContent = `${byIso(data.city.country).country} ${countryCodeEmoji(data.city.country)}`;
   weatherDescriptionDom.textContent = data.list[0].weather[0].description;
-
-  // tempDom.textContent = `${Math.round(data.list[0].main.temp)}°C`;
   tempDom.dataset.temp = Math.round(data.list[0].main.temp);
-
+  iconDom.src = `src/img/icons/${data.list[0].weather[0].icon}.svg`;
   const [maxTemp, minTemp] = findMinAndMaxTemp(0, data);
-  // tempHighTextDom.textContent = maxTemp;
   tempHighTextDom.dataset.temp = maxTemp;
-  // tempLowTextDom.textContent = minTemp;
   tempLowTextDom.dataset.temp = minTemp;
-  // feelsLikeTempDom.textContent = `${Math.round(data.list[0].main.feels_like)}°C`;
   feelsLikeTempDom.dataset.temp = Math.round(data.list[0].main.feels_like);
 
-  iconDom.src = `src/img/icons/${data.list[0].weather[0].icon}.svg`;
+  // Render metric cards
+  dateDom.textContent = getTodaysFullDate(new Date(), lat, lng);
 
   humidityValueDom.textContent = data.list[0].main.humidity;
   windSpeedValueDom.dataset.speed = data.list[0].wind.speed;
 
-  const [sunriseTime, sunriseUnit] = formatAMPM(new Date(data.city.sunrise * 1000), lat, lng).split(' ');
-  const [sunsetTime, sunsetUnit] = formatAMPM(new Date(data.city.sunset * 1000), lat, lng).split(' ');
+  const [sunriseTime, sunriseUnit] = getCurrentTime(new Date(data.city.sunrise * 1000), lat, lng).split(' ');
+  const [sunsetTime, sunsetUnit] = getCurrentTime(new Date(data.city.sunset * 1000), lat, lng).split(' ');
   sunriseValueDom.textContent = sunriseTime;
   sunsetValueDom.textContent = sunsetTime;
   sunriseUnitDom.textContent = sunriseUnit;
   sunsetUnitDom.textContent = sunsetUnit;
 
-  //render hourly forecast
-  for (let i = 0; i < 7; i++) {
-    hourlyTimeDom[i].textContent = formatAMPM(new Date(data.list[i].dt * 1000), lat, lng);
-    hourlyImgDom[i].src = `src/img/icons/${data.list[i].weather[0].icon}.svg`;
-    // hourlyTempDom[i].textContent = `${Math.round(data.list[i].main.temp)}°C`;
+  // Render hourly & 5-day forecasts
+  renderHourlyForecast(data, lat, lng);
+  renderFiveDayForecast(data, lat, lng);
 
-    hourlyTempDom[i].dataset.temp = `${Math.round(data.list[i].main.temp)}`;
-  }
-
-  //render 5-day forecast
-  let j = 0;
-  for (let i = 0; i < 40; i += 8) {
-    if (j === 0) fiveDayForecastDayDom[j].textContent = 'Today';
-    else fiveDayForecastDayDom[j].textContent = formatWeekDayName(new Date(data.list[i].dt * 1000), lat, lng);
-
-    fiveDayForecastImgDom[j].src = `src/img/icons/${data.list[i].weather[0].icon.replace('n', 'd')}.svg`; //remove 'n' from weather
-
-    const [maxTemp, minTemp] = findMinAndMaxTemp(i, data);
-    fiveDayForecastTempHigh[j].dataset.temp = maxTemp;
-    fiveDayForecastTempLow[j].dataset.temp = minTemp;
-    // fiveDayForecastTempHigh[j].textContent = maxTemp;
-    // fiveDayForecastTempLow[j].textContent = minTemp;
-
-    j++;
-  }
-
+  // Render temperatures & unit signs (°C or °F)
   if (metricDom.checked) convertMetrics('metric');
   else if (imperialDom.checked) convertMetrics('imperial');
 
   hideLoader();
 }
 
+//////////////////////////
+// Helper Functions
+
+/**
+ * Updates hour of days based on current date/time
+ * Updates hourly forecasts weather icon.
+ * Stores hourly forecasts temperature's information in html's dataset.
+ *
+ * @param {Object} data result of the HourlyForecast fetch
+ * @param {String} lat latitude
+ * @param {String} lng longitude
+ */
+function renderHourlyForecast(data, lat, lng) {
+  for (let i = 0; i < 7; i++) {
+    hourlyTimeDom[i].textContent = getCurrentTime(new Date(data.list[i].dt * 1000), lat, lng);
+    hourlyImgDom[i].src = `src/img/icons/${data.list[i].weather[0].icon}.svg`;
+    hourlyTempDom[i].dataset.temp = `${Math.round(data.list[i].main.temp)}`;
+  }
+}
+
+/**
+ * Updates days of week based on current date.
+ * Updates 5-day forecasts weather icon.
+ * Stores 5-day forecasts temperature's information in html's dataset.
+ *
+ * @param {Object} data result of the HourlyForecast fetch
+ * @param {String} lat latitude
+ * @param {String} lng longitude
+ */
+function renderFiveDayForecast(data, lat, lng) {
+  // j is pointing to current 5-day-forecast being edited
+  let j = 0;
+
+  // i is pointing to each start of day in data (as temp gets updated every 3 hours, the start of a new day will be after 8 * 3-hour segments)
+  for (let i = 0; i < 40; i += 8) {
+    if (j === 0) fiveDayForecastDayDom[j].textContent = 'Today';
+    else fiveDayForecastDayDom[j].textContent = getTodaysWeekDayName(new Date(data.list[i].dt * 1000), lat, lng);
+
+    fiveDayForecastImgDom[j].src = `src/img/icons/${data.list[i].weather[0].icon.replace('n', 'd')}.svg`; //remove 'n' from weather
+
+    const [maxTemp, minTemp] = findMinAndMaxTemp(i, data);
+    fiveDayForecastTempHigh[j].dataset.temp = maxTemp;
+    fiveDayForecastTempLow[j].dataset.temp = minTemp;
+    j++;
+  }
+}
+
 /**
  * Convert the time to am/pm format eg. "11:56 am"
  * @param {Object} internationalTime a moment-timezone object Object which is returned from ts.getFuzzyLocalTimeFromPoint()
- * @returns the formatted time eg. "11:56 am"
+ * @returns {String} the formatted time eg. "11:56 am"
  */
-function getHours(internationalTime) {
+function formatTimeAMPM(internationalTime) {
   let hours = internationalTime.hours();
   let minutes = internationalTime.minutes();
 
@@ -129,11 +156,11 @@ function getHours(internationalTime) {
  * @param {Object} date Date instance returned from Date() constructor
  * @param {String} lat latitude
  * @param {String} lng longitude
- * @returns current time of location in am/pm format eg. "11:56 am"
+ * @returns {String} current time of location in am/pm format eg. "11:56 am"
  */
-function formatAMPM(date, lat, lng) {
+function getCurrentTime(date, lat, lng) {
   const internationalTime = ts.getFuzzyLocalTimeFromPoint(date, [lng, lat]);
-  return getHours(internationalTime);
+  return formatTimeAMPM(internationalTime);
 }
 
 /**
@@ -141,12 +168,12 @@ function formatAMPM(date, lat, lng) {
  * @param {Object} date Date instance returned from Date() constructor
  * @param {String} lat latitude
  * @param {String} lng longitude
- * @returns todays date in string format eg. "Sat, Oct 22, 2022, 5:10 am"
+ * @returns {String} todays date in string format eg. "Sat, Oct 22, 2022, 5:10 am"
  */
-function formatTodaysDate(date, lat, lng) {
+function getTodaysFullDate(date, lat, lng) {
   const internationalTime = ts.getFuzzyLocalTimeFromPoint(date, [lng, lat]);
 
-  const hours = getHours(internationalTime);
+  const hours = formatTimeAMPM(internationalTime);
   const [day, month, dateVal, year] = internationalTime.toString().split(' ');
   const str = `${day}, ${month} ${dateVal}, ${year}, ${hours}`;
 
@@ -158,9 +185,9 @@ function formatTodaysDate(date, lat, lng) {
  * @param {Object} date Date instance returned from Date() constructor
  * @param {String} lat latitude
  * @param {String} lng longitude
- * @returns today's name of day eg. "Mon"
+ * @returns {String} today's name of day eg. "Mon"
  */
-function formatWeekDayName(date, lat, lng) {
+function getTodaysWeekDayName(date, lat, lng) {
   const internationalTime = ts.getFuzzyLocalTimeFromPoint(date, [lng, lat]);
   const [day] = internationalTime.toString().split(' ');
 
