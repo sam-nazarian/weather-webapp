@@ -30,7 +30,7 @@ async function init() {
     findLocation(getLocation);
 
     const { latitude, longitude } = await fetchLocationBasedOnIP();
-    render(fetchFiveDayForecast, latitude, longitude, true);
+    render(fetchFiveDayForecast, latitude, longitude);
   } catch (err) {
     //incase an error happends with fetchLocationBasedOnIP() hide the loader
     hideLoader();

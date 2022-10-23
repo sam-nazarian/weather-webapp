@@ -80,7 +80,7 @@ export function searchCitiesHandler(fetchFiveDayForecast) {
     if (!selectedCard) return;
 
     addLoader();
-    render(fetchFiveDayForecast, selectedCard.dataset.lat, selectedCard.dataset.lon, true);
+    render(fetchFiveDayForecast, selectedCard.dataset.lat, selectedCard.dataset.lon);
 
     search.value = '';
     matchList.classList.add('hide');

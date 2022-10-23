@@ -48,7 +48,7 @@ const fiveDayForecastTempLow = document.querySelectorAll('.five-day-forecast-tem
  * @param {String} lat latitude
  * @param {String} lng longitude
  */
-export async function render(fetchFiveDayForecast, lat, lng, metric) {
+export async function render(fetchFiveDayForecast, lat, lng) {
   // Fetch data
   const data = await fetchFiveDayForecast(lat, lng);
 
