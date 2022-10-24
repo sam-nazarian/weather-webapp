@@ -45,7 +45,7 @@ export async function fetchLocationBasedOnIP() {
  */
 export function getLocation(showError, render, hideLoader) {
   const geoOptions = {
-    timeout: 5000,
+    timeout: 10000,
   };
 
   if (navigator.geolocation) {

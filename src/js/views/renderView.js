@@ -40,6 +40,10 @@ const fiveDayForecastImgDom = document.querySelectorAll('.five-day-forecast-img'
 const fiveDayForecastTempHigh = document.querySelectorAll('.five-day-forecast-temp-high');
 const fiveDayForecastTempLow = document.querySelectorAll('.five-day-forecast-temp-low');
 
+// Hide Render Information
+const hideRenderInfoDom = document.querySelectorAll('.hide-render-info');
+const hideRightColDom = document.querySelector('.hide-right-col');
+
 //////////////////////////
 
 /**
@@ -84,6 +88,7 @@ export async function render(fetchFiveDayForecast, lat, lng) {
   if (metricDom.checked) convertMetrics('metric');
   else if (imperialDom.checked) convertMetrics('imperial');
 
+  hideRenderInfo();
   hideLoader();
 }
 
@@ -211,4 +216,15 @@ function findMinAndMaxTemp(startIdx, data) {
   }
 
   return [Math.round(maxTemp), Math.round(minTemp)];
+}
+
+/**
+ * hide render information
+ */
+function hideRenderInfo() {
+  hideRenderInfoDom.forEach((el) => {
+    el.classList.remove('hide-render-info');
+  });
+
+  hideRightColDom.classList.remove('hide-right-col');
 }

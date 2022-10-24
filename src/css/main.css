@@ -411,3 +411,13 @@ h2 {
 .footer-link:active {
   color: #1864ab;
 }
+
+/* On h1, icon, right-col */
+.hide-render-info {
+  display: none;
+}
+
+/* On container element */
+.hide-right-col {
+  grid-template-columns: 1fr;
+}

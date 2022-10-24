@@ -41,6 +41,5 @@ function showError(text) {
  * Set current year on copyright paragraph
  */
 export function updateCopyrightDate() {
-  console.log('hello');
   yearDom.textContent = new Date().getFullYear();
 }
