@@ -7,6 +7,18 @@ const locationButton = document.querySelector('.location-button');
 ////////////////////////////////////////////////
 
 /**
+ * reject Promise after the given milliseconds
+ * @param {number} time how much time in  before the
+ */
+function timeout(time) {
+  return new Promise(function (_, reject) {
+    setTimeout(function () {
+      reject(new Error(`Request took too long! Timeout after ${time} milliseconds`));
+    }, time);
+  });
+}
+
+/**
  * Fetch the 5-day weather forecast from openweathermap's API
  * @param {String} lat latitude
  * @param {String} lon longitude
@@ -14,7 +26,10 @@ const locationButton = document.querySelector('.location-button');
  */
 export async function fetchFiveDayForecast(lat, lon) {
   try {
-    const getWeatherData = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}`);
+    const fetchPromise = fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${OPENWEATHER_API_KEY}`);
+    const getWeatherData = await Promise.race([fetchPromise, timeout(10000)]);
+    // if timeout happends, then the code execution stops here & goes to catch()
+
     const data = await getWeatherData.json();
     return data;
   } catch (err) {

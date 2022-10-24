@@ -2,7 +2,7 @@
 import convertMetrics from './convertMetricsView';
 import { byIso } from 'country-code-lookup';
 import { countryCodeEmoji } from 'country-code-emoji';
-import { hideLoader } from './loadView';
+import { hideLoader, showError } from './loadView';
 import ts from '@mapbox/timespace';
 
 // Import DOM
@@ -53,43 +53,49 @@ const hideRightColDom = document.querySelector('.hide-right-col');
  * @param {String} lng longitude
  */
 export async function render(fetchFiveDayForecast, lat, lng) {
-  // Fetch data
-  const data = await fetchFiveDayForecast(lat, lng);
+  try {
+    // Fetch data
+    const data = await fetchFiveDayForecast(lat, lng);
 
-  // Render left-col
-  cityNameDom.textContent = `${data.city.name}`;
-  countryNameDom.textContent = `${byIso(data.city.country).country} ${countryCodeEmoji(data.city.country)}`;
-  weatherDescriptionDom.textContent = data.list[0].weather[0].description;
-  tempDom.dataset.temp = Math.round(data.list[0].main.temp);
-  iconDom.src = `src/img/icons/${data.list[0].weather[0].icon}.svg`;
-  const [maxTemp, minTemp] = findMinAndMaxTemp(0, data);
-  tempHighTextDom.dataset.temp = maxTemp;
-  tempLowTextDom.dataset.temp = minTemp;
-  feelsLikeTempDom.dataset.temp = Math.round(data.list[0].main.feels_like);
+    // Render left-col
+    cityNameDom.textContent = `${data.city.name}`;
+    countryNameDom.textContent = `${byIso(data.city.country).country} ${countryCodeEmoji(data.city.country)}`;
+    weatherDescriptionDom.textContent = data.list[0].weather[0].description;
+    tempDom.dataset.temp = Math.round(data.list[0].main.temp);
+    iconDom.src = `src/img/icons/${data.list[0].weather[0].icon}.svg`;
+    const [maxTemp, minTemp] = findMinAndMaxTemp(0, data);
+    tempHighTextDom.dataset.temp = maxTemp;
+    tempLowTextDom.dataset.temp = minTemp;
+    feelsLikeTempDom.dataset.temp = Math.round(data.list[0].main.feels_like);
 
-  // Render metric cards
-  dateDom.textContent = getTodaysFullDate(new Date(), lat, lng);
+    // Render metric cards
+    dateDom.textContent = getTodaysFullDate(new Date(), lat, lng);
 
-  humidityValueDom.textContent = data.list[0].main.humidity;
-  windSpeedValueDom.dataset.speed = data.list[0].wind.speed;
+    humidityValueDom.textContent = data.list[0].main.humidity;
+    windSpeedValueDom.dataset.speed = data.list[0].wind.speed;
 
-  const [sunriseTime, sunriseUnit] = getCurrentTime(new Date(data.city.sunrise * 1000), lat, lng).split(' ');
-  const [sunsetTime, sunsetUnit] = getCurrentTime(new Date(data.city.sunset * 1000), lat, lng).split(' ');
-  sunriseValueDom.textContent = sunriseTime;
-  sunsetValueDom.textContent = sunsetTime;
-  sunriseUnitDom.textContent = sunriseUnit;
-  sunsetUnitDom.textContent = sunsetUnit;
+    const [sunriseTime, sunriseUnit] = getCurrentTime(new Date(data.city.sunrise * 1000), lat, lng).split(' ');
+    const [sunsetTime, sunsetUnit] = getCurrentTime(new Date(data.city.sunset * 1000), lat, lng).split(' ');
+    sunriseValueDom.textContent = sunriseTime;
+    sunsetValueDom.textContent = sunsetTime;
+    sunriseUnitDom.textContent = sunriseUnit;
+    sunsetUnitDom.textContent = sunsetUnit;
 
-  // Render hourly & 5-day forecasts
-  renderHourlyForecast(data, lat, lng);
-  renderFiveDayForecast(data, lat, lng);
+    // Render hourly & 5-day forecasts
+    renderHourlyForecast(data, lat, lng);
+    renderFiveDayForecast(data, lat, lng);
 
-  // Render temperatures & unit signs (°C or °F)
-  if (metricDom.checked) convertMetrics('metric');
-  else if (imperialDom.checked) convertMetrics('imperial');
+    // Render temperatures & unit signs (°C or °F)
+    if (metricDom.checked) convertMetrics('metric');
+    else if (imperialDom.checked) convertMetrics('imperial');
 
-  hideRenderInfo();
-  hideLoader();
+    hideRenderInfo();
+    hideLoader();
+  } catch (err) {
+    //incase fetchFiveDayForecast() gets rejected
+    showError('Failed to load weather, please retry later!');
+    hideLoader();
+  }
 }
 
 //////////////////////////
