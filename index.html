@@ -12,10 +12,13 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
+    <!-- NOTE: -->
+    <!-- the comments that start with class="" mean that another class could be added or removed to the elemet below it. -->
+    <!-- forexample err-container-active could be added to the div element below it, to make the error container active eg. <div class="err-containe err-container-activer"> -->
+
     <!-- class="err-container-active" -->
     <div class="err-container">
       <p class="err-message">Can't get your current location, permission is required!</p>
-      <!-- <button class="btn-close-err-container">X</button> -->
     </div>
 
     <div class="input-container">
@@ -41,9 +44,10 @@
       </div>
     </div>
 
+    <!-- class="hide-render-info" -->
     <h1 class="hide-render-info">Current Weather</h1>
 
-    <!-- class="loading-background" -->
+    <!-- class="loading-background hide-right-col" -->
     <div class="container loading-background hide-right-col">
       <div class="left-col">
         <!-- class="hide" -->
@@ -66,9 +70,10 @@
         <p class="city-name"></p>
         <p class="country-name">Search for city above 👆</p>
         <p class="weather-description"></p>
-        <!-- <img src="src/img/icons/wind.png" alt="weather icon" class="icon" /> -->
+        <!-- class="hide-render-info" -->
         <img src="src/img/icons/01d.svg" alt="weather icon" class="icon hide-render-info" />
 
+        <!-- class="hide-render-info" -->
         <div class="temp-container hide-render-info">
           <p class="temp"><span class="temp-text" data-temp=""></span><span class="temp-unit"></span></p>
 
@@ -78,9 +83,11 @@
           </div>
         </div>
 
+        <!-- class="hide-render-info" -->
         <p class="feels-like hide-render-info">Feels like <span class="feels-like-temp" data-temp="">﹖</span><span class="temp-unit"></span></p>
       </div>
 
+      <!-- class="hide-render-info" -->
       <div class="right-col hide-render-info">
         <div class="date-and-unitswitch-container">
           <p class="date"></p>
@@ -107,7 +114,7 @@
           </div>
 
           <div class="metric-card">
-            <img class="card-img" src="src/img/icons/wind.png" alt="humidity icon" />
+            <img class="card-img" src="src/img/icons/wind.png" alt="wind speed icon" />
 
             <div class="metric-data">
               <p class="card-title">Wind Speed</p>
@@ -142,43 +149,43 @@
         <div class="hourly-container">
           <div class="hourly-card">
             <p class="hourly-time"></p>
-            <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <img class="hourly-img" src="src/img/icons/01d.svg" alt="hourly weather icon" />
             <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
             <p class="hourly-time"></p>
-            <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <img class="hourly-img" src="src/img/icons/01d.svg" alt="hourly weather icon" />
             <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
             <p class="hourly-time"></p>
-            <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <img class="hourly-img" src="src/img/icons/01d.svg" alt="hourly weather icon" />
             <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
             <p class="hourly-time"></p>
-            <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <img class="hourly-img" src="src/img/icons/01d.svg" alt="hourly weather icon" />
             <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
             <p class="hourly-time"></p>
-            <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <img class="hourly-img" src="src/img/icons/01d.svg" alt="hourly weather icon" />
             <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
             <p class="hourly-time"></p>
-            <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <img class="hourly-img" src="src/img/icons/01d.svg" alt="hourly weather icon" />
             <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
             <p class="hourly-time"></p>
-            <img class="hourly-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <img class="hourly-img" src="src/img/icons/01d.svg" alt="hourly weather icon" />
             <p class="hourly-temp"><span class="hourly-temp-text" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
         </div>
@@ -188,29 +195,29 @@
         <div class="five-day-forecast-container">
           <div class="hourly-card">
             <p class="five-day-forecast-day"></p>
-            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="five-day forecast's weather icon" />
             <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp=""></span><span class="temp-unit"></span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
             <p class="five-day-forecast-day"></p>
-            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="five-day forecast's weather icon" />
             <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp=""></span><span class="temp-unit"></span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
           <div class="hourly-card">
             <p class="five-day-forecast-day"></p>
-            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="five-day forecast's weather icon" />
             <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp=""></span><span class="temp-unit"></span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
           <div class="hourly-card">
             <p class="five-day-forecast-day"></p>
-            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="five-day forecast's weather icon" />
             <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp=""></span><span class="temp-unit"></span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
 
           <div class="hourly-card">
             <p class="five-day-forecast-day"></p>
-            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="humidity icon" />
+            <img class="five-day-forecast-img" src="src/img/icons/01d.svg" alt="five-day forecast's weather icon" />
             <p class="five-day-forecast-temp">↑<span class="five-day-forecast-temp-high" data-temp=""></span><span class="temp-unit"></span> &nbsp;&nbsp; ↓<span class="five-day-forecast-temp-low" data-temp=""></span><span class="temp-unit"></span></p>
           </div>
         </div>

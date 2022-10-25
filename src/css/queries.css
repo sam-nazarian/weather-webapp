@@ -4,35 +4,24 @@
 @media (max-width: 109em) {
   .container {
     margin: 0 20rem;
-    /* margin-bottom: 4rem; */
-    /* grid-template-columns: 1.5fr 3fr; */
   }
 
   .input-container {
     width: 55%;
-    /* margin: 0 auto; */
-    /* margin-top: 7.4rem; */
-    /* margin-bottom: 2.4rem; */
   }
 }
-
 
 /* <= 1'530px */
 @media (max-width: 95.625em) {
   .container {
     margin: 0 15rem;
-    /* margin-bottom: 4rem; */
-    /* grid-template-columns: 1.5fr 3fr; */
   }
 }
-
 
 /* <= 1'424px */
 @media (max-width: 89em) {
   .container {
     margin: 0 10rem;
-    /* margin-bottom: 4rem; */
-    /* grid-template-columns: 1.5fr 3fr; */
   }
 
   .input-container {
@@ -45,7 +34,6 @@
   .container {
     grid-template-columns: 1fr;
     margin: 0 10rem;
-    /* margin-bottom: 4rem; */
   }
 
   .icon {
@@ -57,15 +45,11 @@
   }
 }
 
-
 /* <= 965px */
 @media (max-width: 60.3125em) {
 
   .input-container {
     width: 85%;
-    /* margin: 0 auto;
-    margin-top: 7.4rem;
-    margin-bottom: 2.4rem; */
   }
 
   .icon {
@@ -81,7 +65,6 @@
   }
 
   .date {
-    /* font-size: 2.4rem; */
     justify-self: center;
   }
 
@@ -89,12 +72,10 @@
     justify-self: center;
   }
 
-
   /* adding scrollbar to forecasts */
   .container {
     grid-template-columns: 1fr;
     margin: 0 2rem;
-    /* margin-bottom: 4rem; */
   }
 
   .hourly-container,
@@ -110,13 +91,8 @@
 
   .hourly-img,
   .five-day-forecast-img {
-    /* width: 8rem; */
     width: 7.5rem;
   }
-
-  /* .five-day-forecast-img {
-    width: 10rem;
-  } */
 
 }
 
@@ -165,9 +141,15 @@
 
   .hourly-img,
   .five-day-forecast-img {
-    /* width: 8rem; */
     width: 7rem;
-    /* width: 2rem; */
+  }
+
+  .container {
+    margin: 0 0.75rem;
+  }
+
+  .input-container {
+    width: 95%;
   }
 
 }
@@ -203,19 +185,8 @@
     font-size: 2rem;
   }
 
-  .input-container {
-    width: 95%;
-  }
-
   .date {
     font-size: 2rem;
-  }
-
-  .container {
-    grid-template-columns: 1fr;
-    margin: 0 0.75rem;
-    /* border-radius: 0; */
-    /* margin-bottom: 1rem; */
   }
 
   .hourly-container,
@@ -255,11 +226,7 @@
   }
 
   .switch-field input {
-    /* position: relative; */
     display: grid;
-    /* row-gap: 4rem; */
-    /* justify-items: center; */
-    /* align-items: center; */
   }
 
   .switch-field label:not(:last-child) {
@@ -274,7 +241,6 @@
 
   .hourly-img,
   .five-day-forecast-img {
-    /* width: 7rem; */
     width: 6rem;
   }
 

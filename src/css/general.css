@@ -19,9 +19,7 @@ html {
 body {
   font-family: 'Work Sans', sans-serif;
   font-weight: 400;
-  /* color: #000; */
   color: #212529;
-  /* line-height: 1.2; */
   line-height: 1;
 
   background: rgb(212, 224, 251);
@@ -40,7 +38,6 @@ body {
 h1 {
   font-size: 3.0rem;
   color: #1864ab;
-  /* margin: 0rem 30rem; */
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   text-align: center;
@@ -52,7 +49,6 @@ h2 {
   font-weight: 700;
   font-size: 1.4rem;
   color: #1864ab;
-  /* font-family: sans-serif; */
   margin-bottom: 1rem;
   text-transform: uppercase;
   text-align: right;
