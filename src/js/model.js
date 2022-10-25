@@ -43,7 +43,9 @@ export async function fetchFiveDayForecast(lat, lon) {
  */
 export async function fetchLocationBasedOnIP() {
   try {
-    const getLatLongData = await fetch(`https://geolocation-db.com/json/`);
+    const fetchPromise = fetch(`https://geolocation-db.com/json/`);
+    const getLatLongData = await Promise.race([fetchPromise, timeout(5000)]);
+
     const { latitude, longitude } = await getLatLongData.json();
 
     return { latitude, longitude };
