@@ -126,6 +126,11 @@
   .icon {
     width: 35%;
   }
+
+  h4 {
+    font-size: 1.4rem;
+  }
+
 }
 
 /* <= 513px */
@@ -172,6 +177,10 @@
 
   .err-message {
     font-size: 1.2rem;
+  }
+
+  .switch-field label {
+    font-size: 1.4rem;
   }
 
   .right-col {
@@ -280,6 +289,10 @@
 
   .err-message {
     font-size: 1.0rem;
+  }
+
+  .switch-field label {
+    font-size: 1.3rem;
   }
 
   h1 {

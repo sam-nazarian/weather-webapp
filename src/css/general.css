@@ -17,36 +17,54 @@ html {
 }
 
 body {
-  /* Alternative font-family */
-  /* font-family: "Lucida Grande", Tahoma, Verdana, sans-serif; */
-
-  /* font-family: 'Inter', sans-serif; */
-  font-family: 'Varela Round', sans-serif;
+  font-family: 'Work Sans', sans-serif;
   font-weight: 400;
-  color: #000;
+  /* color: #000; */
+  color: #212529;
+  /* line-height: 1.2; */
+  line-height: 1;
 
   background: rgb(212, 224, 251);
   background: linear-gradient(to right, rgba(212, 224, 251, 1) 0%, rgba(245, 247, 252, 1) 100%);
-
-  /* background-image: radial-gradient(circle 993px at 0.5% 50.5%, rgba(137, 171, 245, 0.37) 0%, rgba(245, 247, 252, 1) 100.2%); */
-
-  /* radial-gradient(circle 993px at 0.5% 50.5%, rgba(137, 171, 245, 0.37) 0%, rgba(245, 247, 252, 1) 100.2%); */
-
-  /* background: linear-gradient(to bottom, rgba(15, 15, 15, 1) 0%, rgba(25, 25, 25, 1) 85%, rgb(30, 30, 30) 100%); */
-  /* background: linear-gradient(to bottom, rgba(15, 15, 15, 1) 0%, rgba(25, 25, 25, 1) 85%, rgb(30, 30, 30) 100%); */
-  /* background: linear-gradient(to bottom, rgba(15, 15, 15, 1) 0%, rgba(25, 25, 25, 1) 85%, rgb(30, 30, 30) 100%); */
-  /* background: -webkit-linear-gradient(to bottom, rgba(15, 15, 15, 1) 0%, rgba(25, 25, 25, 1) 85%, rgb(30, 30, 30) 100%);
-  background: -moz-linear-gradient(to bottom, rgba(15, 15, 15, 1) 0%, rgba(25, 25, 25, 1) 85%, rgb(30, 30, 30) 100%);
-  background: -o-linear-gradient(to bottom, rgba(15, 15, 15, 1) 0%, rgba(25, 25, 25, 1) 85%, rgb(30, 30, 30) 100%); */
+  background: linear-gradient(to right, rgba(212, 224, 251, 1) 0%, rgba(245, 247, 252, 1) 100%);
+  background: linear-gradient(to right, rgba(212, 224, 251, 1) 0%, rgba(245, 247, 252, 1) 100%);
+  background: linear-gradient(to right, rgba(212, 224, 251, 1) 0%, rgba(245, 247, 252, 1) 100%);
+  background: -webkit-linear-gradient(to right, rgba(212, 224, 251, 1) 0%, rgba(245, 247, 252, 1) 100%);
+  background: -moz-linear-gradient(to right, rgba(212, 224, 251, 1) 0%, rgba(245, 247, 252, 1) 100%);
+  background: -o-linear-gradient(to right, rgba(212, 224, 251, 1) 0%, rgba(245, 247, 252, 1) 100%);
 
   /* background-color does not overwrite background selector */
-  /* background-color: rgba(15, 15, 15, 1); */
+  background-color: #fff
+}
 
-  /* background-repeat: no-repeat; */
-  /* background-attachment: fixed; */
+h1 {
+  font-size: 3.0rem;
+  color: #1864ab;
+  /* margin: 0rem 30rem; */
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: -0.8px;
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #1864ab;
+  /* font-family: sans-serif; */
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  text-align: right;
+  letter-spacing: -0.2px;
+}
+
+h4 {
+  font-weight: 600;
+  font-size: 1.5rem;
 }
 
 *:focus {
   outline: none;
-  box-shadow: 0 0 0 8px rgb(102, 102, 102, 0.5);
+  box-shadow: 0 0 0 0.8rem rgba(51, 155, 240, 0.5);
 }

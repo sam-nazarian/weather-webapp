@@ -85,7 +85,7 @@
 
   font-size: 1.8rem;
   font-family: inherit;
-  color: #303030;
+  color: inherit;
   border: none;
   background-color: #ffff;
 
@@ -119,8 +119,8 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   font-size: 1.5rem;
-
   overflow: hidden;
+  line-height: 1.2;
 
   z-index: 9999;
 }
@@ -188,23 +188,33 @@
 }
 
 .city-name {
-  font-size: 3.0rem;
+  font-size: 3.6rem;
   margin-bottom: 0.1rem;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
 }
 
 .country-name {
-  font-size: 3.6rem;
+  font-size: 3.0rem;
   margin-bottom: 1.4rem;
+  font-weight: 500;
+  margin-bottom: 2.4rem;
 }
 
 .weather-description {
   font-size: 2.4rem;
   margin-bottom: 0.2rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-bottom: 0.4rem;
 }
 
 .icon {
   width: 100%;
+  margin-bottom: 0.8rem;
 }
+
+
 
 .temp-container {
   display: grid;
@@ -213,7 +223,8 @@
   column-gap: 0;
 
   justify-content: center;
-  /* margin-bottom: 3.6rem; */
+  line-height: 1.2
+    /* margin-bottom: 3.6rem; */
 }
 
 .high-low-container {
@@ -227,16 +238,18 @@
 .temp-high,
 .temp-low {
   font-size: 1.4rem;
+  font-weight: 600;
 }
 
 .temp {
   font-size: 8.6rem;
   text-align: right;
+  letter-spacing: -2.4px;
 }
 
 .feels-like {
   font-size: 1.6rem;
-  font-weight: 700;
+  font-weight: 500;
 }
 
 .right-col {
@@ -258,7 +271,9 @@
 
 .date {
   font-size: 2.4rem;
+  font-weight: 500;
   justify-self: left;
+  letter-spacing: -1.0px
 }
 
 .switch-field {
@@ -276,6 +291,8 @@
 .switch-field label {
   font-size: 1.6rem;
   font-family: inherit;
+  color: inherit;
+  font-weight: 500;
   transition: background-color 300ms ease-out;
 }
 
@@ -319,6 +336,8 @@
 
 .card-title {
   font-size: 1.6rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
 }
 
 .metric-value {
@@ -327,6 +346,7 @@
 
 .unit {
   font-size: 1.6rem;
+  font-weight: 500;
 }
 
 /* HOURLY CONTAINER */
@@ -358,6 +378,8 @@
 .five-day-forecast-day {
   font-size: 1.2rem;
   margin-bottom: 1rem;
+  /* font-weight: 600; */
+  font-weight: 500;
 }
 
 .hourly-img,
@@ -370,26 +392,7 @@
 .hourly-temp,
 .five-day-forecast-temp {
   font-size: 1.4rem;
-}
-
-h1 {
-  font-size: 3.0rem;
-  color: #1864ab;
-  /* margin: 0rem 30rem; */
-  margin-bottom: 0.5rem;
-  text-transform: uppercase;
-  text-align: center;
-  letter-spacing: -1.4px;
-}
-
-h2 {
-  font-size: 1.4rem;
-  color: #1864ab;
-  /* font-family: sans-serif; */
-  margin-bottom: 1rem;
-  text-transform: uppercase;
-  text-align: right;
-  letter-spacing: -0.7px;
+  /* font-weight: 500; */
 }
 
 .copyright-container {
