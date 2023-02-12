@@ -5,6 +5,8 @@ const errContainerDom = document.querySelector('.err-container');
 // Loaders
 const loadingImgDom = document.querySelector('.loading-img');
 const containerDom = document.querySelector('.container');
+const loadedBodyDom = document.querySelector('.loaded-body');
+const preloaderDom = document.querySelector('.preloader');
 
 // Global variable
 let errTimeout = 0;
@@ -38,3 +40,11 @@ export function addLoader() {
   loadingImgDom.classList.remove('hide');
   containerDom.classList.add('loading-background');
 }
+
+/*
+  Hide preloader when the website loads
+ */
+window.addEventListener('load', function () {
+  loadedBodyDom.style.display = '';
+  preloaderDom.style.display = 'none';
+});
