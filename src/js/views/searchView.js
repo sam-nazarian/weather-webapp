@@ -15,9 +15,16 @@ const locationButton = document.querySelector('.location-button');
 //cities will be set to cities.json as soon as it's fetch is complete
 //this way the browser's execution doesn't stop & wait to load cities.json
 let cities = undefined;
+
 (async function () {
-  cities = await import('../../data/cities.json');
+  const response = await window.fetch('/data/cities.json');
+  cities = await response.json();
 })();
+
+// issue is webpack's loader takes a long time, does the loader takes a long time before it's hidden
+// (async function () {
+//   cities = await import('../../data/cities.json');
+// })();
 
 /**
  * Search in cities.json, finds cities that match with searchText, & show output the first five results to the DOM

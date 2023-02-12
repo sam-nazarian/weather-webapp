@@ -38,7 +38,7 @@ module.exports = {
   //plugins, makes the index.html file on the dist folder, automatically will have the javascript loaded in
   plugins: [
     new HtmlWebpackPlugin({
-      title: `WheatherApp &mdash; Saman`,
+      title: `Saman's WheatherApp`,
       filename: 'index.html', //what the name of the file will be
       template: path.resolve(__dirname, 'index.html'),
     }),

@@ -51,8 +51,9 @@ const hideRightColDom = document.querySelector('.hide-right-col');
  * @param {Function} fetchFiveDayForecast function that fetches for the 5-day-forecast of the weather
  * @param {String} lat latitude
  * @param {String} lng longitude
+ * @param {Boolean} handleErr if handleErr=true show an error, otherwise don't show an error
  */
-export async function render(fetchFiveDayForecast, lat, lng) {
+export async function render(fetchFiveDayForecast, lat, lng, handleErr = true) {
   try {
     // Fetch data
     const data = await fetchFiveDayForecast(lat, lng);
@@ -93,7 +94,7 @@ export async function render(fetchFiveDayForecast, lat, lng) {
     hideLoader();
   } catch (err) {
     //incase fetchFiveDayForecast() gets rejected
-    showError('Failed to load weather, please retry later!');
+    if (handleErr) showError('Failed to load weather, please retry later!');
     hideLoader();
   }
 }

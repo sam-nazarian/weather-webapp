@@ -8,6 +8,7 @@ function importAll(r) {
   return r.keys().map(r); //run the function passed in
 }
 importAll(require.context('../img/icons/', false, /\.(png|jpe?g|svg)$/));
+importAll(require.context('../img/favicon/', false, /\.(png|jpe?g|svg)$/));
 
 // Import Files
 import { fetchFiveDayForecast, fetchLocationBasedOnIP, getLocation } from './model.js';
@@ -31,7 +32,7 @@ async function init() {
     updateCopyrightDate();
 
     const { latitude, longitude } = await fetchLocationBasedOnIP();
-    render(fetchFiveDayForecast, latitude, longitude);
+    render(fetchFiveDayForecast, latitude, longitude, false);
   } catch (err) {
     //incase an error happends with fetchLocationBasedOnIP() hide the loader
     hideLoader();
