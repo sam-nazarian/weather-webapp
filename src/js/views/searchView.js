@@ -3,6 +3,7 @@ import { countryCodeEmoji } from 'country-code-emoji';
 import { render } from './renderView.js';
 import { byIso } from 'country-code-lookup';
 import { addLoader } from './loadView';
+import { showError } from './loadView';
 
 // Import DOM
 const search = document.querySelector('.search');
@@ -31,25 +32,29 @@ let cities = undefined;
  * @param {String} searchText the value that the user searches for eg. "winnipeg"
  */
 const searchCities = async function (searchText) {
-  if (searchText.length === 0) {
-    if (!matchList.classList.contains('hide')) matchList.classList.add('hide');
-    return;
-  }
-
-  let matches = [];
-  let count = 0;
-  const regex = new RegExp(`^${searchText}`, 'gi');
-  for (let i = 0; i < cities.length; i++) {
-    const curCity = cities[i];
-    if (count < 5 && curCity.name.match(regex)) {
-      count++;
-      matches.push(curCity);
-    } else if (count > 5) {
-      break;
+  try {
+    if (searchText.length === 0) {
+      if (!matchList.classList.contains('hide')) matchList.classList.add('hide');
+      return;
     }
-  }
 
-  outputHtml(matches);
+    let matches = [];
+    let count = 0;
+    const regex = new RegExp(`^${searchText}`, 'gi');
+    for (let i = 0; i < cities.length; i++) {
+      const curCity = cities[i];
+      if (count < 5 && curCity.name.match(regex)) {
+        count++;
+        matches.push(curCity);
+      } else if (count > 5) {
+        break;
+      }
+    }
+
+    outputHtml(matches);
+  } catch (err) {
+    showError('Please hold on while the autocomplete cities load!', false);
+  }
 };
 
 /**

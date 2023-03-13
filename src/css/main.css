@@ -13,9 +13,16 @@
   padding: 1.6rem 15rem;
   -webkit-box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-  background-color: #eb4d4b;
   color: #fff;
   display: none;
+}
+
+.err-container--red {
+  background-color: #eb4d4b;
+}
+
+.err-container--blue {
+  background-color: #4dabf7;
 }
 
 .err-message {
